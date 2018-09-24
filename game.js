@@ -45,11 +45,14 @@ class chip {
   }
 }
 
-function placeChip(col, row, color) {
-
+function placeChip(row, col, color) {
+  new chip(row,col, color);
 }
 
 function highlight(row, col) {
+  draw();
+  ctx.fillStyle = "rgba(255,255, 255, .1)";
+  ctx.fillRect((row * 90) + 40, (col * 90) + 40, 90, 90);
 
 }
 
@@ -57,8 +60,15 @@ function highlight(row, col) {
 function handleMouseMove(e) {
   var mouseX = e.clientX;
   var mouseY = e.clientY;
-  getGridNumber(mouseX, mouseY);
+  var coordinates = getGridNumber(mouseX, mouseY);
+  highlight(coordinates.row, coordinates.col)
+}
 
+function handleMouseClick(e) {
+  var mouseX = e.clientX;
+  var mouseY = e.clientY;
+  var coordinates = getGridNumber(mouseX, mouseY);
+  placeChip(coordinates.row, coordinates.col, "red")
 }
 
 function getGridNumber(mouseX, mouseY) {
@@ -80,6 +90,7 @@ function getGridNumber(mouseX, mouseY) {
   }
   console.log("[" + col + "," + row + "]");
   var position = new pos(col, row);
+  return position;
 }
 
 function clear() {
@@ -88,8 +99,12 @@ function clear() {
 }
 
 function draw() {
-
   clear();
+  drawGrid();
+  for (var i = 0; i < chips.length; i++) {
+    chips[i].draw();
+  }
+
 
 }
 
@@ -134,12 +149,5 @@ drawGrid();
 new chip(0, 2, "red")
 new chip(0, 0, "red")
 new chip(2, 0, "red")
-new chip(2, 2, "red")
-new chip(0, 2, "red")
-new chip(3, 1, "red")
-new chip(2, 0, "red")
-new chip(7, 4, "red")
-new chip(3, 2, "red")
-new chip(4, 0, "red")
 new chip(2, 6, "red")
 new chip(7, 7, "red")
