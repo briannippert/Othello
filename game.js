@@ -2,23 +2,7 @@ var canvas = document.getElementById('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var ctx = canvas.getContext('2d');
-
-var ball = {
-  x: 100,
-  y: 500,
-  radius: 10,
-  height: this.radius,
-  width: this.radius,
-  color: 'hsl(' + hsl + ',100%,50%)',
-  draw: function () {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ball.color = 'hsl(' + hsl + ',100%,50%)';
-    ctx.fillStyle = this.color;
-    ctx.fill();
-  }
-};
+var chips = [];
 
 class chip{
     constructor(x,y,color)
@@ -26,8 +10,17 @@ class chip{
         this.x = x;
         this.y = y;
         this.color = color;
+        this.draw();
+        chips.push(this);
     }
     draw()
+    {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.fillStyle = this.color;
+    ctx.fill();  
+    }
 }
 
 
@@ -37,6 +30,7 @@ function clear() {
 }
 
 function draw() {
+
   clear();
 
 }
@@ -53,3 +47,5 @@ function remove(array, element) {
     array.splice(index, 1);
   }
 }
+
+clear();
