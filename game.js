@@ -2,6 +2,7 @@ var canvas = document.getElementById('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var ctx = canvas.getContext('2d');
+var chips = [];
 
 class chip{
     constructor(x,y,color)
@@ -10,6 +11,7 @@ class chip{
         this.y = y;
         this.color = color;
         this.draw();
+        chips.push(this);
     }
     draw()
     {
@@ -28,6 +30,7 @@ function clear() {
 }
 
 function draw() {
+
   clear();
 
 }
@@ -44,3 +47,5 @@ function remove(array, element) {
     array.splice(index, 1);
   }
 }
+
+clear();
