@@ -52,24 +52,24 @@ function remove(array, element) {
 }
 
 function drawGrid(){
-  const canvas = document.getElementById('canvas');
-  const context = canvas.getContext("2d");
-  const bw = 400;
-  const bh = 400;
-  const p = 10;
+  const p = 25;
 
-  for (let x = 0; x <= bw; x +=40){
-    context.moveTo(0.5 + x + p, p);
-    context.lineTo(0.5 + x + p, bh + p);
+  const bw = canvas.width - (p * 2) ;
+  const bh = canvas.height - (p * 2) ;
+
+  console.log({bw,bh})
+  for (let x = 0; x <= bw; x +=75){
+    ctx.moveTo(0.5 + x + p, p);
+    ctx.lineTo(0.5 + x + p, bh + p);
   }
 
-  for (var x = 0; x <= bh; x += 40) {
-    context.moveTo(p, 0.5 + x + p);
-    context.lineTo(bw + p, 0.5 + x + p);
+  for (var x = 0; x <= bh; x += 75) {
+    ctx.moveTo(p, 0.5 + x + p);
+    ctx.lineTo(bw + p, 0.5 + x + p);
   }
 
-  context.strokeStyle = "#FFFFFF";
-  context.stroke();
+  ctx.strokeStyle = "red";
+  ctx.stroke();
 }
-drawGrid();
 clear();
+drawGrid();
