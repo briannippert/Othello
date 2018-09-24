@@ -49,4 +49,25 @@ function remove(array, element) {
   }
 }
 
+function drawGrid(){
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext("2d");
+  const bw = 400;
+  const bh = 400;
+  const p = 10;
+
+  for (let x = 0; x <= bw; x +=40){
+    context.moveTo(0.5 + x + p, p);
+    context.lineTo(0.5 + x + p, bh + p);
+  }
+
+  for (var x = 0; x <= bh; x += 40) {
+    context.moveTo(p, 0.5 + x + p);
+    context.lineTo(bw + p, 0.5 + x + p);
+  }
+
+  context.strokeStyle = "#FFFFFF";
+  context.stroke();
+}
+drawGrid();
 clear();
