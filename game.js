@@ -5,7 +5,7 @@ var ctx = canvas.getContext('2d');
 var chips = [];
 
 class pos {
-  constructor(row, col) {
+  constructor(col, row) {
     this.row = row;
     this.col = col;
   }
@@ -18,13 +18,13 @@ class pos {
 }
 
 class chip {
-  constructor(row, col, color) {
-    this.row = row;
-    this.col = col;
+  constructor(col, row, color) {
+    this.row = col;
+    this.col = row;
     this.radius = 30;
     this.color = color;
-    this.y = (this.col * 90) + 85;
-    this.x = (this.row * 90) + 85;
+    this.x = (this.col * 90) + 85;
+    this.y = (this.row * 90) + 85;
     this.draw();
     chips.push(this);
   }
@@ -45,11 +45,11 @@ class chip {
   }
 }
 
-function placeChip(row, col, color) {
-  new chip(row,col, color);
+function placeChip(col, row, color) {
+  new chip(row, col, color);
 }
 
-function highlight(row, col) {
+function highlight(col, row) {
   draw();
   ctx.fillStyle = "rgba(255,255, 255, .1)";
   ctx.fillRect((row * 90) + 40, (col * 90) + 40, 90, 90);
@@ -68,7 +68,13 @@ function handleMouseClick(e) {
   var mouseX = e.clientX;
   var mouseY = e.clientY;
   var coordinates = getGridNumber(mouseX, mouseY);
-  placeChip(coordinates.row, coordinates.col, "red")
+  if (checkDuplicate(coordinates.col, coordinates.row) == false) {
+    placeChip(coordinates.col, coordinates.row, "red")
+  } else {
+    console.log("Duplicate Chip");
+  }
+
+
 }
 
 function getGridNumber(mouseX, mouseY) {
@@ -107,6 +113,17 @@ function draw() {
 
 
 }
+
+function checkDuplicate(col, row) {
+  for (var i = 0; i < chips.length; i++) {
+    if (chips[i].row == row && chips[i].col == col) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
 
 
 function sleep(ms) {
