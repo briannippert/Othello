@@ -28,46 +28,6 @@ function clear() {
 
 function draw() {
   clear();
-  if(paused == true)
-  {
-    var ctx = canvas.getContext("2d");
-      ctx.font = "40px Arial";
-      ctx.color = 'white'
-      ctx.fillStyle = 'white'
-      ctx.fillText("Press the space key to start! " , canvas.width / 2 - 250, canvas.height / 2);
-  }
-  getColor();
-
-  checkCollisions();
-  ball.draw();
-  if (mousemode == true) {
-    paddle.x = mx - (paddle.width / 2)
-  }
-  paddle.draw();
-  for (var i = 0; i < blocks.length; i++) {
-    blocks[i].draw();
-  }
-  ball.x += ball.vx;
-  ball.y += ball.vy;
-  if (ball.y + ball.radius + ball.vy > canvas.height) {
-    ball.vy = 0;
-    ball.vx = 0;
-    gameOver();
-    return;
-  }
-  if (ball.y - ball.radius + ball.vy < 0) {
-    ball.vy = -ball.vy;
-  }
-  if (ball.x + ball.radius + ball.vx > canvas.width || ball.x - ball.radius + ball.vx < 0) {
-    ball.vx = -ball.vx;
-  }
-  if (endGame == true) {
-    gameOver();
-  }
-  drawScore();
-  if (paused == false && endGame == false) {
-    raf = window.requestAnimationFrame(draw);
-  }
 
 }
 
