@@ -1,6 +1,6 @@
 var canvas = document.getElementById('canvas');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = 800;
+canvas.height = 800;
 var ctx = canvas.getContext('2d');
 var chips = [];
 
@@ -9,6 +9,7 @@ class chip{
     {
         this.x = x;
         this.y = y;
+        this.radius = 40;
         this.color = color;
         this.draw();
         chips.push(this);
@@ -16,7 +17,7 @@ class chip{
     draw()
     {
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.closePath();
     ctx.fillStyle = this.color;
     ctx.fill();  
