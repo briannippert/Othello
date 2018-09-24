@@ -9,10 +9,10 @@ class chip{
     {
         this.row = row;
         this.col = col;
-        this.radius = 35;
+        this.radius = 30;
         this.color = color;
-        this.x = (this.row * 110) + 45;
-        this.y = (this.col * 110) + 45;
+          this.y = (this.col * 90) + 85;
+          this.x = (this.row * 90) + 85; 
         this.draw();
         chips.push(this);
     }
@@ -85,3 +85,15 @@ function drawGrid(){
 }
 clear();
 drawGrid();
+new chip(0,2,"red")
+new chip(0,0,"red")
+new chip(2,0,"red")
+new chip(2,2,"red")
+new chip(0,2,"red")
+new chip(3,1,"red")
+new chip(2,0,"red")
+new chip(7,4,"red")
+new chip(3,2,"red")
+new chip(4,0,"red")
+new chip(2,6,"red")
+new chip(7,7,"red")
