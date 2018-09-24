@@ -5,12 +5,14 @@ var ctx = canvas.getContext('2d');
 var chips = [];
 
 class chip{
-    constructor(x,y,color)
+    constructor(row,col,color)
     {
-        this.x = x;
-        this.y = y;
-        this.radius = 40;
+        this.row = row;
+        this.col = col;
+        this.radius = 35;
         this.color = color;
+        this.x = (this.row * 110) + 45;
+        this.y = (this.col * 110) + 45;
         this.draw();
         chips.push(this);
     }
