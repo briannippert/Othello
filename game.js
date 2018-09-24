@@ -3,7 +3,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var ctx = canvas.getContext('2d');
 
-var ball = {
+var piece = {
   x: 100,
   y: 500,
   radius: 10,
@@ -14,7 +14,7 @@ var ball = {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
     ctx.closePath();
-    ball.color = 'hsl(' + hsl + ',100%,50%)';
+    piece.color = 'hsl(' + hsl + ',100%,50%)';
     ctx.fillStyle = this.color;
     ctx.fill();
   }
