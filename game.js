@@ -58,7 +58,7 @@ class board{
 
 
 function clear() {
-  ctx.fillStyle = 'rgba(35, 50, 50, 1)';
+  ctx.fillStyle = 'rgba(0, 0, 0, 1)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
