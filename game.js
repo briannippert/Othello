@@ -52,18 +52,18 @@ function remove(array, element) {
 }
 
 function drawGrid(){
-  const p = 25;
+  const p = 40;
 
   const bw = canvas.width - (p * 2) ;
   const bh = canvas.height - (p * 2) ;
 
   console.log({bw,bh})
-  for (let x = 0; x <= bw; x +=75){
+  for (let x = 0; x <= bw; x += 90){
     ctx.moveTo(0.5 + x + p, p);
     ctx.lineTo(0.5 + x + p, bh + p);
   }
 
-  for (var x = 0; x <= bh; x += 75) {
+  for (var x = 0; x <= bh; x += 90) {
     ctx.moveTo(p, 0.5 + x + p);
     ctx.lineTo(bw + p, 0.5 + x + p);
   }
