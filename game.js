@@ -146,8 +146,7 @@ function drawGrid() {
 }
 clear();
 drawGrid();
-new chip(0, 2, "red")
-new chip(0, 0, "red")
-new chip(2, 0, "red")
-new chip(2, 6, "red")
-new chip(7, 7, "red")
+new chip(3, 3, "white")
+new chip(4, 4, "white")
+new chip(3, 4, "red")
+new chip(4, 3, "red")
