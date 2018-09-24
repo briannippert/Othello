@@ -16,6 +16,18 @@ class chip{
         this.draw();
         chips.push(this);
     }
+    flip()
+    {
+      if(this.color == "red")
+      {
+        this.color ="white"
+      }
+      else
+      {
+        this.color ="red"
+      }
+     this.draw();
+    }
     draw()
     {
     ctx.beginPath();
