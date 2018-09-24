@@ -3,7 +3,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var ctx = canvas.getContext('2d');
 
-var piece = {
+var ball = {
   x: 100,
   y: 500,
   radius: 10,
@@ -14,11 +14,21 @@ var piece = {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
     ctx.closePath();
-    piece.color = 'hsl(' + hsl + ',100%,50%)';
+    ball.color = 'hsl(' + hsl + ',100%,50%)';
     ctx.fillStyle = this.color;
     ctx.fill();
   }
 };
+
+class chip{
+    constructor(x,y,color)
+    {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+    }
+    draw()
+}
 
 
 function clear() {
