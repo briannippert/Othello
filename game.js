@@ -2,29 +2,10 @@ var canvas = document.getElementById('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var ctx = canvas.getContext('2d');
-var raf;
-var running = false;
-var endGame = false;
-var speed = 20;
-var maxSpeed = 50;
-var blocks = [];
-var score = 0;
-var mousemode = false;
-var paused = true;
-var Keys = {
-  up: false,
-  down: false,
-  left: false,
-  right: false
-};
-var hsl = 0;
-var mx = 0;
 
 var piece = {
   x: 100,
   y: 500,
-  vx: 1,
-  vy: 3,
   radius: 10,
   height: this.radius,
   width: this.radius,
@@ -38,24 +19,6 @@ var piece = {
     ctx.fill();
   }
 };
-
-
-var paddle = {
-  x: 200,
-  y: window.innerHeight - 50,
-  vx: 2,
-  vy: 0,
-  height: 15,
-  width: 150,
-  radius: 25,
-  color: 'white',
-  draw: function () {
-    ctx.beginPath();
-    ctx.rect(this.x, this.y, this.width, this.height);
-    ctx.fillStyle = this.color;
-    ctx.fill();
-  }
-}
 
 
 function clear() {
@@ -118,13 +81,5 @@ function remove(array, element) {
 
   if (index !== -1) {
     array.splice(index, 1);
-  }
-}
-
-function getColor() {
-  if (hsl <= 360) {
-    hsl++;
-  } else {
-    hsl = 0;
   }
 }
