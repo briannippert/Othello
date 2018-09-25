@@ -83,20 +83,16 @@ function getCounts() {
   total = 0;
   for (var i = 0; i < chips.length; i++) {
     total++;
-    if(chips[i].color == "red")
-    {
-      red ++;
-    }
-    else
-    {
+    if (chips[i].color == "red") {
+      red++;
+    } else {
       white++;
     }
   }
   log("Red Chips: " + red);
   log("White Chips: " + white);
   log("Total Chips: " + total);
-  if(total != red + white)
-  {
+  if (total != red + white) {
     log("Chip Count Error!")
   }
 }
@@ -122,7 +118,7 @@ function handleMouseClick(e) {
   if (checkDuplicate(coordinates.col, coordinates.row) == false && coordinates.col != -1 && coordinates.row != -1) {
     placeChip(coordinates.col, coordinates.row, "red")
   } else {
-    
+
 
   }
   getCounts();
@@ -181,8 +177,7 @@ function draw() {
 function checkDuplicate(col, row) {
   for (var i = 0; i < chips.length; i++) {
     if (chips[i].row == row && chips[i].col == col) {
-      if(debug)
-      {
+      if (debug) {
         chips[i].flip();
       }
       return true;
@@ -193,20 +188,20 @@ function checkDuplicate(col, row) {
 
 
 /**
- * Checks to see if there is a chip of the specified color in the row and column
+ * Checks to see if there is a chip in the specified row and column
  * @param  {} col Column Number
  * @param  {} row Row Number
  * @returns boolean
  */
-function checkFull(col, row, color) {
-  var positions = []
+function checkPosition(col, row) {
   for (var i = 0; i < chips.length; i++) {
-    if (chips[i].row == row && chips[i].col == col && chips[i].color == color) {
-      positions.push(new pos(chips[i].col, chips[i].row))
+    if (chips[i].row == row && chips[i].col == col) {
+      return chips[i].color;
     }
   }
-  return positions;
+  return null;
 }
+
 
 
 /**
