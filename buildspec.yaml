@@ -8,7 +8,7 @@ phases:
      - echo "pre_build step"
  build:
    commands:
-     - aws s3 sync --delete . "s3://othello-stalpo"
+     - aws s3 sync --delete . "s3://codepipeline-us-east-1-179904591538"
  post_build:
    commands:
      - echo "post_build step"
