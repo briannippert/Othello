@@ -178,17 +178,21 @@ function draw() {
  * @param  {} row Row Number
  * @returns boolean
  */
+
+
 function checkDuplicate(col, row) {
-  for (var i = 0; i < chips.length; i++) {
-    if (chips[i].row == row && chips[i].col == col) {
-      if(debug)
-      {
-        chips[i].flip();
-      }
-      return true;
-    }
-  }
-  return false;
+  // for (var i = 0; i < chips.length; i++) {
+  //   if (chips[i].row == row && chips[i].col == col) {
+  //     if(debug)
+  //     {
+  //       chips[i].flip();
+  //     }
+  //     return true;
+  //   }
+  // }
+  // return false;
+  return chips.some(chip=>(chip.row==row && chip.col == col));
+  
 }
 
 
