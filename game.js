@@ -219,7 +219,6 @@ function AIPlay() {
         }
     }
     var bestMove = new Move(-1000, -1, -1);
-
     for (var i = 0; i < validMoves.length; i++) {
         if (validMoves[i].score > bestMove.score) {
             bestMove = validMoves[i];
