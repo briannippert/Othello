@@ -111,6 +111,8 @@ function getCounts() {
     }
 }
 
+
+
 /**
  * Handles the mouse move event inside the canvas element
  * @param  {} e mouse move event
@@ -208,13 +210,15 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
                 break;
             }
             validChips.push(somePiece);
-            
             curRow += sOFFSET_MOVE_ROW[i];
             curCol += sOFFSET_MOVE_COL[i];
         }
     }
-
+if(validChips.length > 0)
+{
     highlight(row, col);
+}
+    
 }
 
 
