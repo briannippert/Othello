@@ -10,6 +10,7 @@ var total = 0;
 var playerScore = 0;
 var aiScore = 0;
 debug = true;
+var player = "red"
 
 var points = [
     [100, -1, 5, 2, 2, 5, -1, 100],
@@ -121,7 +122,11 @@ function handleMouseMove(e) {
     var mouseX = e.clientX;
     var mouseY = e.clientY;
     var coordinates = getGridNumber(mouseX, mouseY);
-    isValidMove(coordinates.col, coordinates.row);
+    if (player == "red") {
+        isValidMove(coordinates.col, coordinates.row, "red");
+    } else {
+        isValidMove(coordinates.col, coordinates.row, "white");
+    }
 
 }
 /**
@@ -133,7 +138,24 @@ function handleMouseClick(e) {
     var mouseY = e.clientY;
     var coordinates = getGridNumber(mouseX, mouseY);
     if (checkDuplicate(coordinates.col, coordinates.row) == false && coordinates.col != -1 && coordinates.row != -1) {
-        placeChip(coordinates.col, coordinates.row, "red")
+        if (validChips.length > 0) {
+            if (player == "red") {
+                placeChip(coordinates.col, coordinates.row, "red")
+                for (var i = 0; i < validChips.length; i++) {
+                    validChips[i].flip();
+                }
+                player = "white";
+            } else {
+                placeChip(coordinates.col, coordinates.row, "white")
+                for (var i = 0; i < validChips.length; i++) {
+                    validChips[i].flip();
+                }
+                player = "red";
+            }
+
+
+        }
+
     } else {
 
     }
@@ -201,22 +223,37 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
     for (var i = 0; i < 8; i++) {
         var curRow = row + sOFFSET_MOVE_ROW[i];
         var curCol = col + sOFFSET_MOVE_COL[i];
+        var hasStuffBetween = false;
+        var tempChildren = [];
+        log( "COL: "  +curCol + "," + "ROW: "+ curRow)
         while (row >= 0 && row < 8 && col >= 0 && col < 8) {
-            var somePiece = checkPosition(col, row);
+
+            log(curRow + "," + curCol)
+            var somePiece = checkPosition(curCol, curRow);
             if (somePiece == null) { //Empty Space
                 break;
             } else if (somePiece.color == color) { //Same Color Piece, not valid
+                if (hasStuffBetween == true) {
+                    for (var j = 0; j < tempChildren.length; j++) {
+                        validChips.push(tempChildren[j]);
+                    }
+                }
                 break;
+            } else {
+                hasStuffBetween = true;
+                tempChildren.push(somePiece);
             }
-            validChips.push(somePiece);
             curRow += sOFFSET_MOVE_ROW[i];
             curCol += sOFFSET_MOVE_COL[i];
+
         }
     }
+    log(validChips)
     if (validChips.length > 0) {
         highlight(row, col);
+    } else {
+        draw();
     }
-
 }
 
 
@@ -314,10 +351,10 @@ function log(string) {
 }
 
 function newGame() {
-    new chip(3, 3, "white");
-    new chip(4, 4, "white");
-    new chip(3, 4, "red");
-    new chip(4, 3, "red");
+    new chip(3, 4, "white");
+    new chip(4, 5, "white");
+    new chip(3, 5, "red");
+    new chip(4, 4, "red");
     draw();
 }
 
