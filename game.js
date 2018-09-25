@@ -193,6 +193,23 @@ function checkDuplicate(col, row) {
 
 
 /**
+ * Checks to see if there is a chip of the specified color in the row and column
+ * @param  {} col Column Number
+ * @param  {} row Row Number
+ * @returns boolean
+ */
+function checkFull(col, row, color) {
+  var positions = []
+  for (var i = 0; i < chips.length; i++) {
+    if (chips[i].row == row && chips[i].col == col && chips[i].color == color) {
+      positions.push(new pos(chips[i].col, chips[i].row))
+    }
+  }
+  return positions;
+}
+
+
+/**
  * pauses execution of the JS for the specified time in milliseconds. No IE
  * @param  {} ms time in milliseconds
  */
