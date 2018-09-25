@@ -119,7 +119,8 @@ function handleMouseMove(e) {
   var mouseX = e.clientX;
   var mouseY = e.clientY;
   var coordinates = getGridNumber(mouseX, mouseY);
-  highlight(coordinates.row, coordinates.col)
+  isValidMove(coordinates.col,coordinates.row);
+  
 }
 /**
  * Handles the mouse click event inside the canvas element
@@ -184,7 +185,7 @@ function draw() {
 
 function isValidMove(col,row)
 {
-
+  highlight(row, col)
 }
 
 
