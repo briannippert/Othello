@@ -195,6 +195,13 @@ function checkDuplicate(col, row) {
   
 }
 
+function getNeighbors(row,col,color){
+  let redChips = chips.filter(chip=>(chip.row - row <= 1 && chip.row - row >= -1 
+    && chip.col - col <= 1 && chip.col - col >= -1 && (chip.col-col != 0 || chip.row - row != 0)
+    && chip.color != color))
+  console.log({row,col})  
+  console.table(redChips)
+}
 
 /**
  * pauses execution of the JS for the specified time in milliseconds. No IE
