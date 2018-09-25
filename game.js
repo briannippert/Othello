@@ -214,6 +214,18 @@ function draw() {
     }
 }
 
+function AIPlay() {
+    for (var i = 0; i < 8; i++) {
+        for (var j = 0; j < 8; j++) {
+            isValidMove(i, j);
+            if (validChips.length > 0) {
+                validMoves.push(new Move(score[i][j], [i], [j]))
+            }
+        }
+    }
+    
+}
+
 function isValidMove(col, row, color) { //color is the color of the piece that is about to drop, ie the color of the current player
     if (checkPosition(col, row) != null) {
         return;
@@ -259,6 +271,7 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
     }
     log(validChips)
     if (validChips.length > 0) {
+
         highlight(row, col);
     } else {
         draw();
