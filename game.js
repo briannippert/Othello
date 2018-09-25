@@ -101,26 +101,6 @@ function getCounts() {
   }
 }
 
-<<<<<<< HEAD
-class board{
-    constructor()
-    {
-        this.x = 0;
-        this.y = 0;
-        this.color = "#00FFFF";
-        this.draw();
-    }
-    draw()
-    {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ctx.fillStyle = this.color;
-    ctx.fill();  
-    }
-}
-
-=======
 /**
  * Handles the mouse move event inside the canvas element
  * @param  {} e mouse move event
@@ -143,7 +123,6 @@ function handleMouseClick(e) {
     placeChip(coordinates.col, coordinates.row, "red")
   } else {
     
->>>>>>> 7e183c39763d6ab79b8320292a28dd7ff49a6fbe
 
   }
   getCounts();
