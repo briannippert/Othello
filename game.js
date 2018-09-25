@@ -3,6 +3,7 @@ canvas.width = 800;
 canvas.height = 800;
 var ctx = canvas.getContext('2d');
 var chips = [];
+var validChips = [];
 var red = 0;
 var white = 0;
 var total = 0;
@@ -118,7 +119,8 @@ function handleMouseMove(e) {
   var mouseX = e.clientX;
   var mouseY = e.clientY;
   var coordinates = getGridNumber(mouseX, mouseY);
-  highlight(coordinates.row, coordinates.col)
+  isValidMove(coordinates.col,coordinates.row);
+  
 }
 /**
  * Handles the mouse click event inside the canvas element
@@ -178,9 +180,15 @@ function draw() {
   for (var i = 0; i < chips.length; i++) {
     chips[i].draw();
   }
-
-
 }
+
+
+function isValidMove(col,row)
+{
+  highlight(row, col)
+}
+
+
 /**
  * Checks to see if there is already a chip in the specified space
  * @param  {} col Column Number
@@ -188,17 +196,27 @@ function draw() {
  * @returns boolean
  */
 function checkDuplicate(col, row) {
-  for (var i = 0; i < chips.length; i++) {
-    if (chips[i].row == row && chips[i].col == col) {
-      if (debug) {
-        chips[i].flip();
-      }
-      return true;
-    }
-  }
-  return false;
+  // for (var i = 0; i < chips.length; i++) {
+  //   if (chips[i].row == row && chips[i].col == col) {
+  //     if(debug)
+  //     {
+  //       chips[i].flip();
+  //     }
+  //     return true;
+  //   }
+  // }
+  // return false;
+  return chips.some(chip=>(chip.row==row && chip.col == col));
+  
 }
 
+function getNeighbors(row,col,color){
+  let redChips = chips.filter(chip=>(chip.row - row <= 1 && chip.row - row >= -1 
+    && chip.col - col <= 1 && chip.col - col >= -1 && (chip.col-col != 0 || chip.row - row != 0)
+    && chip.color != color))
+  console.log({row,col})  
+  console.table(redChips)
+}
 
 /**
  * Checks to see if there is a chip in the specified row and column
@@ -261,8 +279,13 @@ function log(string) {
 
 }
 
-new chip(3, 3, "white");
-new chip(4, 4, "white");
-new chip(3, 4, "red");
-new chip(4, 3, "red");
-draw();
+function newGame()
+{
+  new chip(3, 3, "white");
+  new chip(4, 4, "white");
+  new chip(3, 4, "red");
+  new chip(4, 3, "red");
+  draw();
+}
+
+newGame();
