@@ -187,7 +187,7 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
         return;
     }
 
-    validChips.clear();
+    validChips = [];
 
     // var curr = checkPosition(col, row);
     // var color = curr.color;
@@ -201,7 +201,7 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
         var curRow = row + sOFFSET_MOVE_ROW[i];
         var curCol = col + sOFFSET_MOVE_COL[i];
         while(row >= 0 && row < 8 && col >= 0 && col < 8){
-            var somePiece = checkPosition(cow, row);
+            var somePiece = checkPosition(col, row);
             if(somePiece == null){  //Empty Space
                 break;
             }
