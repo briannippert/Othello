@@ -3,6 +3,7 @@ canvas.width = 800;
 canvas.height = 800;
 var ctx = canvas.getContext('2d');
 var chips = [];
+var validChips = [];
 var red = 0;
 var white = 0;
 var total = 0;
@@ -178,17 +179,21 @@ function draw() {
   for (var i = 0; i < chips.length; i++) {
     chips[i].draw();
   }
+}
 
+
+function isValidMove(col,row)
+{
 
 }
+
+
 /**
  * Checks to see if there is already a chip in the specified space
  * @param  {} col Column Number
  * @param  {} row Row Number
  * @returns boolean
  */
-
-
 function checkDuplicate(col, row) {
   // for (var i = 0; i < chips.length; i++) {
   //   if (chips[i].row == row && chips[i].col == col) {
