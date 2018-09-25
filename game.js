@@ -214,7 +214,7 @@ function AIPlay() {
         for (var r = 0; r < 8; r++) {
             isValidMove(c, r, "white");
             if (validChips.length > 0) {
-                validMoves.push(new Move(score[c][r], c, r))
+                validMoves.push(new Move(score[c][r], r, c))
             }
         }
     }
