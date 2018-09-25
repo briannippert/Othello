@@ -6,6 +6,8 @@ var chips = [];
 var red = 0;
 var white = 0;
 var total = 0;
+var playerScore = 0;
+var aiScore = 0;
 debug = true;
 
 var points = [
