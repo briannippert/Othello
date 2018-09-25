@@ -206,11 +206,14 @@ function draw() {
 }
 
 function AIPlay() {
-    
+
     validMoves = [];
     log(validMoves)
     for (var c = 0; c < 8; c++) {
         for (var r = 0; r < 8; r++) {
+            if (checkDuplicate(c, r) == true) {
+                continue;
+            }
             isValidMove(c, r, "white");
             if (validChips.length > 0) {
                 validMoves.push(new Move(score[c][r], c, r))
@@ -223,6 +226,7 @@ function AIPlay() {
             bestMove = validMoves[i];
         }
     }
+    log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score)
     isValidMove(bestMove.col, bestMove.row, "white");
     placeChip(bestMove.col, bestMove.row, "white");
     for (var i = 0; i < validChips.length; i++) {
@@ -251,10 +255,10 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
         var curCol = col + sOFFSET_MOVE_COL[i];
         var hasStuffBetween = false;
         var tempChildren = [];
-        log("COL: " + curCol + "," + "ROW: " + curRow)
+
         while (row >= 0 && row < 8 && col >= 0 && col < 8) {
 
-            log(curRow + "," + curCol)
+
             var somePiece = checkPosition(curCol, curRow);
             if (somePiece == null) { //Empty Space
                 break;
@@ -274,7 +278,7 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
 
         }
     }
-    log(validChips)
+
     if (validChips.length > 0) {
 
         highlight(row, col);
@@ -309,11 +313,7 @@ function getNeighbors(row, col, color) {
     let redChips = chips.filter(chip => (chip.row - row <= 1 && chip.row - row >= -1 &&
         chip.col - col <= 1 && chip.col - col >= -1 && (chip.col - col != 0 || chip.row - row != 0) &&
         chip.color != color))
-    console.log({
-        row,
-        col
-    })
-    console.table(redChips)
+
 }
 
 /**
