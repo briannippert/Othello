@@ -134,13 +134,9 @@ function handleMouseMove(e) {
         var coordinates = getGridNumber(mouseX, mouseY);
         if (player == "red") {
             isValidMove(coordinates.col, coordinates.row, "red");
-        } else {
-            isValidMove(coordinates.col, coordinates.row, "white");
         }
-    } else {
+
     }
-
-
 }
 /**
  * Handles the mouse click event inside the canvas element
@@ -224,7 +220,7 @@ function AIPlay() {
             bestMove = validMoves[i];
         }
     }
-    placeChip(bestMove.col, bestMove.row, "white");
+    placeChip(bestMove.row, bestMove.col, "white");
     isValidMove(bestMove.col, bestMove.row, "white");
     for (var i = 0; i < validChips.length; i++) {
         validChips[i].flip();
@@ -247,7 +243,6 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
     const sOFFSET_MOVE_ROW = [-1, -1, -1, 0, 0, 1, 1, 1];
     /** move offset for column */
     const sOFFSET_MOVE_COL = [-1, 0, 1, -1, 1, -1, 0, 1];
-
     for (var i = 0; i < 8; i++) {
         var curRow = row + sOFFSET_MOVE_ROW[i];
         var curCol = col + sOFFSET_MOVE_COL[i];
