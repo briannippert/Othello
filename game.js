@@ -61,6 +61,9 @@ class chip {
         ctx.fillStyle = this.color;
         ctx.fill();
     }
+    color() {
+        return this.color;
+    }
 }
 
 /**
@@ -119,7 +122,7 @@ function handleMouseMove(e) {
     var mouseX = e.clientX;
     var mouseY = e.clientY;
     var coordinates = getGridNumber(mouseX, mouseY);
-    isValidMove(coordinates.col, coordinates.row);
+    isValidMove(coordinates.col, coordinates.row, "red");
 
 }
 /**
@@ -195,18 +198,28 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
     const sOFFSET_MOVE_ROW = [-1, -1, -1,  0,  0,  1,  1,  1];
 	/** move offset for column */
 	const sOFFSET_MOVE_COL = [-1,  0,  1, -1,  1, -1,  0,  1]; 
-
+    var isValid = false;
     for (var i = 0; i < 8; i++) {
         var curRow = row + sOFFSET_MOVE_ROW[i];
         var curCol = col + sOFFSET_MOVE_COL[i];
+        console.log(curRow + ", " + curCol);
+        var hasStuffInBetween = false;
         while(row >= 0 && row < 8 && col >= 0 && col < 8){
             var somePiece = checkPosition(col, row);
             if(somePiece == null){  //Empty Space
                 break;
             }
             else if(somePiece.color == color) { //Same Color Piece, not valid
+                console.log(somePiece.color);
+                if(hasStuffInBetween == true){
+                    isValid = true;
+                }
                 break;
             }
+            else{
+                hasStuffInBetween = true;
+            }
+            console.log(hasStuffInBetween);
             validChips.push(somePiece);
             
             curRow += sOFFSET_MOVE_ROW[i];
@@ -214,7 +227,9 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
         }
     }
 
-    highlight(row, col);
+    if(isValid == true){
+        highlight(row, col);
+    }
 }
 
 
