@@ -142,7 +142,7 @@ function handleMouseMove(e) {
  * Handles the mouse click event inside the canvas element
  * @param  {} e mouse click event
  */
-function handleMouseClick(e) {
+async function handleMouseClick(e) {
     var mouseX = e.clientX;
     var mouseY = e.clientY;
     var coordinates = getGridNumber(mouseX, mouseY);
@@ -206,12 +206,14 @@ function draw() {
 }
 
 function AIPlay() {
+    
     validMoves = [];
+    log(validMoves)
     for (var c = 0; c < 8; c++) {
         for (var r = 0; r < 8; r++) {
             isValidMove(c, r, "white");
             if (validChips.length > 0) {
-                validMoves.push(new Move(score[c][r], r, c))
+                validMoves.push(new Move(score[c][r], c, r))
             }
         }
     }
