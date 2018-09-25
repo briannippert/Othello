@@ -12,6 +12,7 @@ var aiScore = 0;
 debug = true;
 var player = "red"
 var validMoves = [];
+var validRedMoves = [];
 var haveWeShownScoreYet = false;
 var score = [
     [100, -1, 5, 2, 2, 5, -1, 100],
@@ -218,7 +219,7 @@ function draw() {
 function AIPlay() {
 
     validMoves = [];
-    log(validMoves)
+    //log(validMoves)
     for (var c = 0; c < 8; c++) {
         for (var r = 0; r < 8; r++) {
             if (checkDuplicate(c, r) == true) {
@@ -254,7 +255,30 @@ function AIPlay() {
         validChips[i].flip();
     }
     player = "red";
+    doesRedHaveAvailableMoves();
+}
 
+async function doesRedHaveAvailableMoves(){
+    await sleep(200);
+    validRedMoves = [];
+    for(var r = 0; r < 8; r++){
+        for(var c = 0; c < 8; c++){
+            if (checkDuplicate(c, r) == true) {
+                continue;
+            }
+            isValidMove(c, r, "red");
+            if (validChips.length > 0) {
+                validRedMoves.push(new Move(score[c][r], c, r, validChips.length))
+            }
+        }
+    }
+    if(validRedMoves.length < 1){
+        if(haveWeShownScoreYet == false){
+            alert("You are out of possible moves.");
+        }
+        winCondition();
+        player = white;
+    }
 }
 
 function winCondition(){
