@@ -12,7 +12,9 @@
 }
   </style>
 </head>
-  <canvas onclick="handleMouseClick(event)" onmousemove="handleMouseMove(event)" id="canvas"></canvas>
+<body>
+  <button style="z-index: 10;" onclick="passTurn()">Pass</button>
+  <canvas style="z-index: -1;" onclick="handleMouseClick(event)" onmousemove="handleMouseMove(event)" id="canvas"></canvas>
   <script src="game.js"></script>
 </body>
 </html>

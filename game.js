@@ -12,6 +12,7 @@ var aiScore = 0;
 debug = true;
 var player = "red"
 var validMoves = [];
+var haveWeShownScoreYet = false;
 var score = [
     [100, -1, 5, 2, 2, 5, -1, 100],
     [-1, -10, 1, 1, 1, 1, -10, -1],
@@ -114,9 +115,9 @@ function getCounts() {
             white++;
         }
     }
-    log("Red Chips: " + red);
-    log("White Chips: " + white);
-    log("Total Chips: " + total);
+    // log("Red Chips: " + red);
+    // log("White Chips: " + white);
+    // log("Total Chips: " + total);
     if (total != red + white) {
         log("Chip Count Error!")
     }
@@ -150,18 +151,25 @@ async function handleMouseClick(e) {
     if (checkDuplicate(coordinates.col, coordinates.row) == false && coordinates.col != -1 && coordinates.row != -1) {
         if (validChips.length > 0) {
             if (player == "red") {
+                log("You Played: " + coordinates.col + "," + coordinates.row + " Score: " + "2 Bananas");
                 placeChip(coordinates.col, coordinates.row, "red")
                 for (var i = 0; i < validChips.length; i++) {
                     validChips[i].flip();
                 }
                 player = "white";
-                await sleep(1000)
+                await sleep(500)
                 AIPlay();
             }
         }
     }
     getCounts();
 }
+
+function passTurn(){
+    player = "white";
+    AIPlay();
+}
+
 /**
  * gets the grid number of the mouse pointer
  * @param  {} mouseX
@@ -204,11 +212,7 @@ function draw() {
     for (var i = 0; i < chips.length; i++) {
         chips[i].draw();
     }
-    getCounts();
-    if(total == 64)
-    {
-      alert("Game Over! Player 1: " + red + " AI: " + white)
-    }
+    winCondition();
 }
 
 function AIPlay() {
@@ -238,7 +242,12 @@ function AIPlay() {
           }
         }
     }
-    log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score)
+    if(bestMove.col < 0){
+        winCondition();
+        player = "red";
+        return;
+    }
+    log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
     isValidMove(bestMove.col, bestMove.row, "white");
     placeChip(bestMove.col, bestMove.row, "white");
     for (var i = 0; i < validChips.length; i++) {
@@ -246,6 +255,15 @@ function AIPlay() {
     }
     player = "red";
 
+}
+
+function winCondition(){
+    getCounts();
+    if((total == 64 || red < 1 || white < 1) && haveWeShownScoreYet == false) 
+    {
+        haveWeShownScoreYet = true;
+        alert("Game Over! Player 1: " + red + " AI: " + white);
+    }
 }
 
 function isValidMove(col, row, color) { //color is the color of the piece that is about to drop, ie the color of the current player
