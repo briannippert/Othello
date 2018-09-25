@@ -221,8 +221,8 @@ function AIPlay() {
             bestMove = validMoves[i];
         }
     }
-    placeChip(bestMove.row, bestMove.col, "white");
     isValidMove(bestMove.col, bestMove.row, "white");
+    placeChip(bestMove.col, bestMove.row, "white");
     for (var i = 0; i < validChips.length; i++) {
         validChips[i].flip();
     }
