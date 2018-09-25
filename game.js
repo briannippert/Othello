@@ -154,7 +154,7 @@ function handleMouseClick(e) {
                     validChips[i].flip();
                 }
                 player = "white";
-                sleep(1000)
+                await sleep(1000)
                 AIPlay();
             }
         }
