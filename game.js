@@ -212,7 +212,7 @@ function draw() {
 function AIPlay() {
     for (var i = 0; i < 8; i++) {
         for (var j = 0; j < 8; j++) {
-            isValidMove(i, j);
+            isValidMove(i, j, "white");
             if (validChips.length > 0) {
                 validMoves.push(new Move(score[i][j], i, j))
             }
