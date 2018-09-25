@@ -3,7 +3,10 @@ canvas.width = 800;
 canvas.height = 800;
 var ctx = canvas.getContext('2d');
 var chips = [];
-debug = false;
+var red = 0;
+var white = 0;
+var total = 0;
+debug = true;
 
 class pos {
   constructor(col, row) {
@@ -72,6 +75,33 @@ function highlight(col, row) {
 }
 
 /**
+ * Gets the current count of all pieces
+ */
+function getCounts() {
+  red = 0;
+  white = 0;
+  total = 0;
+  for (var i = 0; i < chips.length; i++) {
+    total++;
+    if(chips[i].color == "red")
+    {
+      red ++;
+    }
+    else
+    {
+      white++;
+    }
+  }
+  log("Red Chips: " + red);
+  log("White Chips: " + white);
+  log("Total Chips: " + total);
+  if(total != red + white)
+  {
+    log("Chip Count Error!")
+  }
+}
+
+/**
  * Handles the mouse move event inside the canvas element
  * @param  {} e mouse move event
  */
@@ -92,8 +122,10 @@ function handleMouseClick(e) {
   if (checkDuplicate(coordinates.col, coordinates.row) == false && coordinates.col != -1 && coordinates.row != -1) {
     placeChip(coordinates.col, coordinates.row, "red")
   } else {
-     log("Duplicate Chip");
+    
+
   }
+  getCounts();
 }
 /**
  * gets the grid number of the mouse pointer
@@ -118,7 +150,7 @@ function getGridNumber(mouseX, mouseY) {
   if (row < 0) {
     row = -1;
   }
-    var position = new pos(col, row);
+  var position = new pos(col, row);
   return position;
 }
 /**
@@ -149,6 +181,10 @@ function draw() {
 function checkDuplicate(col, row) {
   for (var i = 0; i < chips.length; i++) {
     if (chips[i].row == row && chips[i].col == col) {
+      if(debug)
+      {
+        chips[i].flip();
+      }
       return true;
     }
   }
@@ -193,12 +229,11 @@ function drawGrid() {
   ctx.stroke();
 }
 
-function log(string)
-{
-  if(debug){
+function log(string) {
+  if (debug) {
     console.log(string)
   }
-  
+
 }
 
 new chip(3, 3, "white");
