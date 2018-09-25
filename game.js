@@ -183,7 +183,7 @@ function draw() {
 }
 
 
-function isValidMove(col, row) {
+function isValidMove(col, row, color) {
     highlight(row, col)
 }
 
