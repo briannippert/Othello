@@ -204,6 +204,11 @@ function draw() {
     for (var i = 0; i < chips.length; i++) {
         chips[i].draw();
     }
+    getCounts();
+    if(total == 64)
+    {
+      alert("Game Over! Player 1: " + red + " AI: " + white)
+    }
 }
 
 function AIPlay() {
