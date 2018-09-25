@@ -65,10 +65,11 @@ class chip {
 }
 
 class Move {
-    constructor(score, col, row) {
+    constructor(score, col, row, chipsToFlip) {
         this.score = score;
         this.row = row;
-        this.col = col
+        this.col = col;
+        this.chipsToFlip = chipsToFlip;
     }
 
 }
@@ -216,14 +217,20 @@ function AIPlay() {
             }
             isValidMove(c, r, "white");
             if (validChips.length > 0) {
-                validMoves.push(new Move(score[c][r], c, r))
+                validMoves.push(new Move(score[c][r], c, r, validChips.length))
             }
         }
     }
-    var bestMove = new Move(-1000, -1, -1);
+    var bestMove = new Move(-1000, -1, -1, 0);
     for (var i = 0; i < validMoves.length; i++) {
         if (validMoves[i].score > bestMove.score) {
             bestMove = validMoves[i];
+        }else if(validMoves[i].score == bestMove.score)
+        {
+          if(validMoves[i].chipsToFlip > bestMove.chipsToFlip)
+          {
+            bestMove = validMoves[i];
+          }
         }
     }
     log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score)
