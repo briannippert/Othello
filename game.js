@@ -261,8 +261,13 @@ function log(string) {
 
 }
 
-new chip(3, 3, "white");
-new chip(4, 4, "white");
-new chip(3, 4, "red");
-new chip(4, 3, "red");
-draw();
+function newGame()
+{
+  new chip(3, 3, "white");
+  new chip(4, 4, "white");
+  new chip(3, 4, "red");
+  new chip(4, 3, "red");
+  draw();
+}
+
+newGame();
