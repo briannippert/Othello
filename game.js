@@ -182,7 +182,6 @@ function draw() {
     }
 }
 
-
 function isValidMove(col, row, color) { //color is the color of the piece that is about to drop, ie the color of the current player
     if(checkPosition(col, row) != null){
         return;
