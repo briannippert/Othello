@@ -134,7 +134,6 @@ function handleMouseClick(e) {
         placeChip(coordinates.col, coordinates.row, "red")
     } else {
 
-
     }
     getCounts();
 }
