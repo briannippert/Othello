@@ -65,7 +65,7 @@ class chip {
 }
 
 class Move {
-    constructor(score, row, col) {
+    constructor(score, col, row) {
         this.score = score;
         this.row = row;
         this.col = col
