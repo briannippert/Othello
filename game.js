@@ -128,8 +128,7 @@ function getCounts() {
  * @param  {} e mouse move event
  */
 function handleMouseMove(e) {
-    if(player == "red")
-    {
+    if (player == "red") {
         var mouseX = e.clientX;
         var mouseY = e.clientY;
         var coordinates = getGridNumber(mouseX, mouseY);
@@ -138,13 +137,11 @@ function handleMouseMove(e) {
         } else {
             isValidMove(coordinates.col, coordinates.row, "white");
         }
-    }
-    else
-    {
+    } else {
         sleep(1000)
         AIPlay();
     }
-    
+
 
 }
 /**
@@ -217,7 +214,7 @@ function AIPlay() {
         for (var j = 0; j < 8; j++) {
             isValidMove(i, j);
             if (validChips.length > 0) {
-                validMoves.push(new Move(score[i][j], [i], [j]))
+                validMoves.push(new Move(score[i][j], i, j))
             }
         }
     }
