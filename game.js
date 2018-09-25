@@ -210,11 +210,11 @@ function draw() {
 }
 
 function AIPlay() {
-    for (var i = 0; i < 8; i++) {
-        for (var j = 0; j < 8; j++) {
-            isValidMove(i, j, "white");
+    for (var c = 0; c < 8; c++) {
+        for (var r = 0; r < 8; r++) {
+            isValidMove(c, r, "white");
             if (validChips.length > 0) {
-                validMoves.push(new Move(score[i][j], i, j))
+                validMoves.push(new Move(score[c][r], c, r))
             }
         }
     }
