@@ -138,8 +138,6 @@ function handleMouseMove(e) {
             isValidMove(coordinates.col, coordinates.row, "white");
         }
     } else {
-        sleep(1000)
-        AIPlay();
     }
 
 
@@ -160,6 +158,8 @@ function handleMouseClick(e) {
                     validChips[i].flip();
                 }
                 player = "white";
+                sleep(1000)
+                AIPlay();
             }
         }
     }
