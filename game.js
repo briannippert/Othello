@@ -256,7 +256,7 @@ function AIPlay() {
     }
     player = "red";
     doesRedHaveAvailableMoves();
-}
+} 
 
 async function doesRedHaveAvailableMoves(){
     await sleep(200);
