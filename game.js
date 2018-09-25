@@ -11,8 +11,8 @@ var playerScore = 0;
 var aiScore = 0;
 debug = true;
 var player = "red"
-
-var points = [
+var validMoves = [];
+var score = [
     [100, -1, 5, 2, 2, 5, -1, 100],
     [-1, -10, 1, 1, 1, 1, -10, -1],
     [5, 1, 1, 1, 1, 1, 1, 5],
@@ -62,6 +62,15 @@ class chip {
         ctx.fillStyle = this.color;
         ctx.fill();
     }
+}
+
+class Move {
+    constructor(score, row, col) {
+        this.score = score;
+        this.row = row;
+        this.col = col
+    }
+
 }
 
 /**
@@ -225,7 +234,7 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
         var curCol = col + sOFFSET_MOVE_COL[i];
         var hasStuffBetween = false;
         var tempChildren = [];
-        log( "COL: "  +curCol + "," + "ROW: "+ curRow)
+        log("COL: " + curCol + "," + "ROW: " + curRow)
         while (row >= 0 && row < 8 && col >= 0 && col < 8) {
 
             log(curRow + "," + curCol)
@@ -351,10 +360,10 @@ function log(string) {
 }
 
 function newGame() {
-    new chip(3, 4, "white");
-    new chip(4, 5, "white");
-    new chip(3, 5, "red");
-    new chip(4, 4, "red");
+    new chip(3, 3, "white");
+    new chip(4, 4, "white");
+    new chip(3, 4, "red");
+    new chip(4, 3, "red");
     draw();
 }
 
