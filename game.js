@@ -206,6 +206,7 @@ function draw() {
 }
 
 function AIPlay() {
+    validMoves = [];
     for (var c = 0; c < 8; c++) {
         for (var r = 0; r < 8; r++) {
             isValidMove(c, r, "white");
@@ -381,5 +382,4 @@ function newGame() {
     new chip(4, 3, "red");
     draw();
 }
-
 newGame();
