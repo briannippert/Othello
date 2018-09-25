@@ -14,6 +14,7 @@ var player = "red"
 var validMoves = [];
 var validRedMoves = [];
 var haveWeShownScoreYet = false;
+var PlayerTwo = false;
 var score = [
     [100, -1, 5, 2, 2, 5, -1, 100],
     [-1, -10, 1, 1, 1, 1, -10, -1],
@@ -171,6 +172,11 @@ function passTurn(){
     AIPlay();
 }
 
+function turnComputerOn(){
+    PlayerTwo = true;
+    doesRedHaveAvailableMoves();
+}
+
 /**
  * gets the grid number of the mouse pointer
  * @param  {} mouseX
@@ -278,6 +284,33 @@ async function doesRedHaveAvailableMoves(){
         }
         winCondition();
         player = white;
+    }
+    if(PlayerTwo == true){
+        var bestMove = new Move(-1000, -1, -1, 0);
+        for (var i = 0; i < validRedMoves.length; i++) {
+            if (validRedMoves[i].score > bestMove.score) {
+                bestMove = validRedMoves[i];
+            }else if(validRedMoves[i].score == bestMove.score)
+            {
+            if(validRedMoves[i].chipsToFlip > bestMove.chipsToFlip)
+            {
+                bestMove = validRedMoves[i];
+            }
+            }
+        }
+        if(bestMove.col < 0){
+            winCondition();
+            player = "white";
+            return;
+        }
+        log("A2 Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
+        isValidMove(bestMove.col, bestMove.row, "red");
+        placeChip(bestMove.col, bestMove.row, "red");
+        for (var i = 0; i < validChips.length; i++) {
+            validChips[i].flip();
+        }
+        player = "white";
+        AIPlay();
     }
 }
 
