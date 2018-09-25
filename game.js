@@ -128,14 +128,23 @@ function getCounts() {
  * @param  {} e mouse move event
  */
 function handleMouseMove(e) {
-    var mouseX = e.clientX;
-    var mouseY = e.clientY;
-    var coordinates = getGridNumber(mouseX, mouseY);
-    if (player == "red") {
-        isValidMove(coordinates.col, coordinates.row, "red");
-    } else {
-        isValidMove(coordinates.col, coordinates.row, "white");
+    if(player == "red")
+    {
+        var mouseX = e.clientX;
+        var mouseY = e.clientY;
+        var coordinates = getGridNumber(mouseX, mouseY);
+        if (player == "red") {
+            isValidMove(coordinates.col, coordinates.row, "red");
+        } else {
+            isValidMove(coordinates.col, coordinates.row, "white");
+        }
     }
+    else
+    {
+        sleep(1000)
+        AIPlay();
+    }
+    
 
 }
 /**
@@ -154,19 +163,8 @@ function handleMouseClick(e) {
                     validChips[i].flip();
                 }
                 player = "white";
-            } else {
-                placeChip(coordinates.col, coordinates.row, "white")
-                for (var i = 0; i < validChips.length; i++) {
-                    validChips[i].flip();
-                }
-                player = "red";
             }
-
-
         }
-
-    } else {
-
     }
     getCounts();
 }
@@ -223,7 +221,20 @@ function AIPlay() {
             }
         }
     }
-    
+    var bestMove = new Move(-1000, -1, -1);
+
+    for (var i = 0; i < validMoves.length; i++) {
+        if (validMoves[i].score > bestMove.score) {
+            bestMove = validMoves[i];
+        }
+    }
+    placeChip(bestMove.col, bestMove.row, "white");
+    isValidMove(bestMove.col, bestMove.row, "white");
+    for (var i = 0; i < validChips.length; i++) {
+        validChips[i].flip();
+    }
+    player = "red";
+
 }
 
 function isValidMove(col, row, color) { //color is the color of the piece that is about to drop, ie the color of the current player
