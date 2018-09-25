@@ -184,7 +184,7 @@ function draw() {
 }
 
 function isValidMove(col, row, color) { //color is the color of the piece that is about to drop, ie the color of the current player
-    if(checkPosition(col, row) != null){
+    if (checkPosition(col, row) != null) {
         return;
     }
 
@@ -194,19 +194,18 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
     // var color = curr.color;
 
     /** move offset for row */
-    const sOFFSET_MOVE_ROW = [-1, -1, -1,  0,  0,  1,  1,  1];
-	/** move offset for column */
-	const sOFFSET_MOVE_COL = [-1,  0,  1, -1,  1, -1,  0,  1]; 
+    const sOFFSET_MOVE_ROW = [-1, -1, -1, 0, 0, 1, 1, 1];
+    /** move offset for column */
+    const sOFFSET_MOVE_COL = [-1, 0, 1, -1, 1, -1, 0, 1];
 
     for (var i = 0; i < 8; i++) {
         var curRow = row + sOFFSET_MOVE_ROW[i];
         var curCol = col + sOFFSET_MOVE_COL[i];
-        while(row >= 0 && row < 8 && col >= 0 && col < 8){
+        while (row >= 0 && row < 8 && col >= 0 && col < 8) {
             var somePiece = checkPosition(col, row);
-            if(somePiece == null){  //Empty Space
+            if (somePiece == null) { //Empty Space
                 break;
-            }
-            else if(somePiece.color == color) { //Same Color Piece, not valid
+            } else if (somePiece.color == color) { //Same Color Piece, not valid
                 break;
             }
             validChips.push(somePiece);
@@ -214,11 +213,10 @@ function isValidMove(col, row, color) { //color is the color of the piece that i
             curCol += sOFFSET_MOVE_COL[i];
         }
     }
-if(validChips.length > 0)
-{
-    highlight(row, col);
-}
-    
+    if (validChips.length > 0) {
+        highlight(row, col);
+    }
+
 }
 
 
