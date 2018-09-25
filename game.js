@@ -187,18 +187,30 @@ function draw() {
  * @param  {} row Row Number
  * @returns boolean
  */
+
+
 function checkDuplicate(col, row) {
-  for (var i = 0; i < chips.length; i++) {
-    if (chips[i].row == row && chips[i].col == col) {
-      if (debug) {
-        chips[i].flip();
-      }
-      return true;
-    }
-  }
-  return false;
+  // for (var i = 0; i < chips.length; i++) {
+  //   if (chips[i].row == row && chips[i].col == col) {
+  //     if(debug)
+  //     {
+  //       chips[i].flip();
+  //     }
+  //     return true;
+  //   }
+  // }
+  // return false;
+  return chips.some(chip=>(chip.row==row && chip.col == col));
+  
 }
 
+function getNeighbors(row,col,color){
+  let redChips = chips.filter(chip=>(chip.row - row <= 1 && chip.row - row >= -1 
+    && chip.col - col <= 1 && chip.col - col >= -1 && (chip.col-col != 0 || chip.row - row != 0)
+    && chip.color != color))
+  console.log({row,col})  
+  console.table(redChips)
+}
 
 /**
  * Checks to see if there is a chip in the specified row and column
