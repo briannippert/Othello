@@ -51,6 +51,18 @@ var moves = [
 ]
 
 
+const initMoves = [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0]
+]
+
+
 class pos {
     constructor(col, row) {
         this.row = row;
@@ -389,6 +401,7 @@ function winCondition() {
 
             }
         }
+        moves = initMoves;
         haveWeShownScoreYet = true;
         alert("Game Over! Player 1: " + red + " AI: " + white);
 
