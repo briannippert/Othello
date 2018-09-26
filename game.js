@@ -285,6 +285,7 @@ function AIPlay() {
     log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
     isValidMove(bestMove.col, bestMove.row, "white");
     placeChip(bestMove.col, bestMove.row, "white");
+    iMoved(bestMove.col,bestMove.row,"white")
     for (var i = 0; i < validChips.length; i++) {
         validChips[i].flip();
     }
@@ -306,13 +307,8 @@ async function doesRedHaveAvailableMoves() {
             }
         }
     }
-<<<<<<< HEAD
     if (validRedMoves.length < 1) {
         if (haveWeShownScoreYet == false) {
-=======
-    if(validRedMoves.length < 1){
-        if(haveWeShownScoreYet == false && PlayerTwo == false && total != 64){
->>>>>>> d4b79fc728d38a6473d370ff110dc06f5cd5fec8
             alert("You are out of possible moves.");
         }
         winCondition();
@@ -343,6 +339,7 @@ async function doesRedHaveAvailableMoves() {
         log("A2 Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
         isValidMove(bestMove.col, bestMove.row, "red");
         placeChip(bestMove.col, bestMove.row, "red");
+        iMoved(bestMove.col,bestMove.row,"red")
         for (var i = 0; i < validChips.length; i++) {
             validChips[i].flip();
         }
@@ -351,11 +348,11 @@ async function doesRedHaveAvailableMoves() {
     }
 }
 
-function iMoved(row, col, color) {
+function iMoved(col, row, color) {
     if (color == "red") {
-        moves[row][col] = 1;
+        moves[col][row] = 1;
     } else {
-        moves[row][col] = 2;
+        moves[col][row] = 2;
     }
 }
 
