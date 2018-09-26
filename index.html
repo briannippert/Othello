@@ -5,19 +5,31 @@
   <title>Othello</title>
   <style>
     #canvas {
-        position:fixed;
+        /* position:fixed;
         left:0;
-        top:0;
+        top:0; */
         width:800px;
         height:800px;
     }
   </style>
 </head>
 <body>
+  <table>
+    <tr>
+      <th>White:</th>
+      <th id="whiteScore"></th>
+    </tr>
+    <tr>
+      <th>Red:</th>
+      <th id="redScore"></th>
+    </tr>
+  </table>
   <button style="z-index: 10;" onclick="passTurn()">Pass</button>
   <button style="z-index: 10;" onclick="turnComputerOn()">I just wanna watch...</button>
   <button style="z-index: 10;" onclick="newGame()">New Game</button>
+  <hr/>
   <canvas style="z-index: -1;" onclick="handleMouseClick(event)" onmousemove="handleMouseMove(event)" id="canvas"></canvas>
+  
   <script src="game.js"></script>
 </body>
 </html>

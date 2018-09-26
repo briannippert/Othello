@@ -15,6 +15,8 @@ var validMoves = [];
 var validRedMoves = [];
 var haveWeShownScoreYet = false;
 var PlayerTwo = false;
+const redScore = document.getElementById("redScore");
+const whiteScore = document.getElementById("whiteScore");
 var score = [
     [100, -1, 5, 2, 2, 5, -1, 100],
     [-1, -10, 1, 1, 1, 1, -10, -1],
@@ -123,6 +125,8 @@ function getCounts() {
     if (total != red + white) {
         log("Chip Count Error!")
     }
+
+    // redScore.value = red;
 }
 
 
@@ -477,7 +481,7 @@ function log(string) {
 }
 
 function newGame() {
-    PlayerTwo = false;
+    // PlayerTwo = false;
     chips = [];
     new chip(3, 3, "white");
     new chip(4, 4, "white");
