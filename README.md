@@ -1,3 +1,1 @@
-# briannippert.github.io
-
-Othello
+# Othello
