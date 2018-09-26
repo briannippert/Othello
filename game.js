@@ -282,7 +282,7 @@ function AIPlay() {
             isValidMove(c, r, "white");
             if (validChips.length > 0) {
                 validMoves.push(new Move(baseScore[c][r], c, r, validChips.length, validChips))
-               
+
             }
         }
     }
@@ -321,9 +321,16 @@ function train() {
     }
 }
 
-function undo()
-{
-    var moveToUndo = gamestate.pop();
+function undo() {
+    if (gamestate.length > 0) {
+        var moveToUndo = gamestate.pop();
+        for (var i = 0; i < moveToUndo.chipList.length; i++) {
+            moveToUndo.chipList[i].flip();
+        }
+        remove(chips, checkPosition(moveToUndo.col, moveToUndo.row))
+        draw();
+        draw();
+    }
 
 }
 
@@ -350,8 +357,7 @@ async function doesRedHaveAvailableMoves() {
         player = "white";
         if (chips.length == 4) {
             player = "red";
-        }
-        else{
+        } else {
             AIPlay();
         }
     }
@@ -421,7 +427,7 @@ function winCondition() {
         }
         moves = initMoves;
 
-        if(PlayerTwo){
+        if (PlayerTwo) {
             newGame();
             return;
         }
