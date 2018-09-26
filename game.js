@@ -270,6 +270,12 @@ function draw() {
     for (var i = 0; i < chips.length; i++) {
         chips[i].draw();
     }
+    clear();
+    drawGrid();
+    for (var i = 0; i < chips.length; i++) {
+        chips[i].draw();
+    }
+
     winCondition();
 }
 
