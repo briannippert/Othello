@@ -305,14 +305,14 @@ function AIPlay() {
         noMoves = true;
         player = "red";
         return;
+    }    else{
+        noMoves = false;
     }
     if (bestMove.score <= tieMoves[0].score && tieMoves.length > 0) {
         var move = Math.floor(Math.random() * tieMoves.length);
         bestMove = tieMoves[move];
     }
-    else{
-        noMoves = false;
-    }
+
     log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
     isValidMove(bestMove.col, bestMove.row, "white");
     gamestate.push(new Move(0, bestMove.col, bestMove.row, validChips.length, validChips))
