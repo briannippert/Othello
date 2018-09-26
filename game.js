@@ -306,8 +306,13 @@ async function doesRedHaveAvailableMoves() {
             }
         }
     }
+<<<<<<< HEAD
     if (validRedMoves.length < 1) {
         if (haveWeShownScoreYet == false) {
+=======
+    if(validRedMoves.length < 1){
+        if(haveWeShownScoreYet == false && PlayerTwo == false && total != 64){
+>>>>>>> d4b79fc728d38a6473d370ff110dc06f5cd5fec8
             alert("You are out of possible moves.");
         }
         winCondition();
