@@ -163,6 +163,7 @@ async function handleMouseClick(e) {
                     validChips[i].flip();
                 }
                 player = "white";
+                draw()
                 await sleep(500)
                 AIPlay();
             }
