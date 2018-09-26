@@ -38,6 +38,19 @@ var baseScore = [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0]
 ]
+
+var moves = [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0]
+]
+
+
 class pos {
     constructor(col, row) {
         this.row = row;
@@ -184,12 +197,12 @@ async function handleMouseClick(e) {
 }
 
 
-function passTurn(){
+function passTurn() {
     player = "white";
     AIPlay();
 }
 
-function turnComputerOn(){
+function turnComputerOn() {
     PlayerTwo = true;
     doesRedHaveAvailableMoves();
 }
@@ -258,15 +271,13 @@ function AIPlay() {
     for (var i = 0; i < validMoves.length; i++) {
         if (validMoves[i].score > bestMove.score) {
             bestMove = validMoves[i];
-        }else if(validMoves[i].score == bestMove.score)
-        {
-          if(validMoves[i].chipsToFlip > bestMove.chipsToFlip)
-          {
-            bestMove = validMoves[i];
-          }
+        } else if (validMoves[i].score == bestMove.score) {
+            if (validMoves[i].chipsToFlip > bestMove.chipsToFlip) {
+                bestMove = validMoves[i];
+            }
         }
     }
-    if(bestMove.col < 0){
+    if (bestMove.col < 0) {
         winCondition();
         player = "red";
         return;
@@ -279,13 +290,13 @@ function AIPlay() {
     }
     player = "red";
     doesRedHaveAvailableMoves();
-} 
+}
 
-async function doesRedHaveAvailableMoves(){
+async function doesRedHaveAvailableMoves() {
     await sleep(200);
     validRedMoves = [];
-    for(var r = 0; r < 8; r++){
-        for(var c = 0; c < 8; c++){
+    for (var r = 0; r < 8; r++) {
+        for (var c = 0; c < 8; c++) {
             if (checkDuplicate(c, r) == true) {
                 continue;
             }
@@ -295,33 +306,31 @@ async function doesRedHaveAvailableMoves(){
             }
         }
     }
-    if(validRedMoves.length < 1){
-        if(haveWeShownScoreYet == false){
+    if (validRedMoves.length < 1) {
+        if (haveWeShownScoreYet == false) {
             alert("You are out of possible moves.");
         }
         winCondition();
         player = "white";
-        if(chips.length == 4){
+        if (chips.length == 4) {
             player = "red";
         }
     }
-    if(PlayerTwo == true){
+    if (PlayerTwo == true) {
         var bestMove = new Move(-1000, -1, -1, 0);
         for (var i = 0; i < validRedMoves.length; i++) {
             if (validRedMoves[i].score > bestMove.score) {
                 bestMove = validRedMoves[i];
-            }else if(validRedMoves[i].score == bestMove.score)
-            {
-            if(validRedMoves[i].chipsToFlip > bestMove.chipsToFlip)
-            {
-                bestMove = validRedMoves[i];
-            }
+            } else if (validRedMoves[i].score == bestMove.score) {
+                if (validRedMoves[i].chipsToFlip > bestMove.chipsToFlip) {
+                    bestMove = validRedMoves[i];
+                }
             }
         }
-        if(bestMove.col < 0){   //that means white can't make any more moves
+        if (bestMove.col < 0) { //that means white can't make any more moves
             winCondition();
             player = "white";
-            if(haveWeShownScoreYet == false){   //if the game isn't over yet, we should let the player know that it's their turn
+            if (haveWeShownScoreYet == false) { //if the game isn't over yet, we should let the player know that it's their turn
                 alert("Computer can't make a move. It's your turn!");
             }
             return;
@@ -337,13 +346,21 @@ async function doesRedHaveAvailableMoves(){
     }
 }
 
-function winCondition(){
+function iMoved(row, col, color) {
+    if (color == "red") {
+        moves[row][col] = 1;
+    } else {
+        moves[row][col] = 2;
+    }
+}
+
+function winCondition() {
     getCounts();
-    if((total == 64 || red < 1 || white < 1) && haveWeShownScoreYet == false) 
-    {
+    if ((total == 64 || red < 1 || white < 1) && haveWeShownScoreYet == false) {
         haveWeShownScoreYet = true;
         alert("Game Over! Player 1: " + red + " AI: " + white);
-        if(confirm("Would you like to start a new game?") == true){
+
+        if (confirm("Would you like to start a new game?") == true) {
             PlayerTwo = false;
             haveWeShownScoreYet = false;
             newGame();
