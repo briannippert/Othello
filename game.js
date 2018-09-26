@@ -209,12 +209,14 @@ function handleMouseClick(e) {
                     validChips[i].flip();
                 }
                 player = "white";
-                draw()
+                draw();
+
                 if (!trainmode) {
                     sleep(500);
                 }
+
                 AIPlay();
-                
+
             }
         }
     }
@@ -369,7 +371,7 @@ function undo() {
 
 function doesRedHaveAvailableMoves() {
     if (!trainmode) {
-        sleep(200);
+        //   sleep(200);
     }
 
     validRedMoves = [];
@@ -591,7 +593,9 @@ function checkPosition(col, row) {
  */
 function sleep(ms) {
     var now = new Date().getTime();
-    while (new Date().getTime() < now + ms) { /* do nothing */ }
+    while (new Date().getTime() < now + ms) {
+
+    }
 }
 /**
  * removes an element from the specified array
