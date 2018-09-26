@@ -206,7 +206,7 @@ async function handleMouseClick(e) {
                 }
                 player = "white";
                 draw()
-                await sleep(500)
+                //await sleep(500)
                 AIPlay();
             }
         }
@@ -317,7 +317,7 @@ function AIPlay() {
 function train() {
     for (var i = 0; i < document.getElementById("train").value; i++) {
         turnComputerOn();
-
+        console.log(i, "iterations ran")
     }
 }
 
@@ -328,7 +328,7 @@ function undo()
 }
 
 async function doesRedHaveAvailableMoves() {
-    await sleep(200);
+    //await sleep(200);
     validRedMoves = [];
     for (var r = 0; r < 8; r++) {
         for (var c = 0; c < 8; c++) {
@@ -571,7 +571,6 @@ function log(string) {
 }
 
 function newGame() {
-    // PlayerTwo = false;
     chips = [];
     gamestate = [];
     new chip(3, 3, "white");
