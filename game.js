@@ -316,7 +316,7 @@ function AIPlay() {
 function train() {
     for (var i = 0; i < document.getElementById("train").value; i++) {
         turnComputerOn();
-
+        console.log(i, "iterations ran")
     }
 }
 
