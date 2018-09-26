@@ -452,7 +452,7 @@ function iMoved(row, col, color) {
 function winCondition() {
     getCounts();
     if ((total == 64 || red < 1 || white < 1 || noMoves == true) && haveWeShownScoreYet == false) {
-        console.log({
+        log({
             red,
             white,
             total
