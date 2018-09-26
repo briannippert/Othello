@@ -167,6 +167,7 @@ async function handleMouseClick(e) {
     getCounts();
 }
 
+
 function passTurn(){
     player = "white";
     AIPlay();
