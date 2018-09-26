@@ -16,6 +16,7 @@ var validRedMoves = [];
 var haveWeShownScoreYet = false;
 var PlayerTwo = false;
 var trainmode = false;
+var noMoves = false;
 const redScore = document.getElementById("redScore");
 const whiteScore = document.getElementById("whiteScore");
 
@@ -207,7 +208,10 @@ async function handleMouseClick(e) {
                 }
                 player = "white";
                 draw()
-                //await sleep(500)
+                if(!trainmode){
+                    await sleep(500);
+                }
+                
                 AIPlay();
             }
         }
@@ -299,8 +303,12 @@ function AIPlay() {
     }
     if (bestMove.col < 0) {
         winCondition();
+        noMoves = true;
         player = "red";
         return;
+    }
+    else{
+        noMoves = false;
     }
     log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
     isValidMove(bestMove.col, bestMove.row, "white");
@@ -338,6 +346,7 @@ function undo() {
 }
 
 async function doesRedHaveAvailableMoves() {
+    console.log(trainmode)
     if(!trainmode){
         await sleep(200);
     }
@@ -360,12 +369,16 @@ async function doesRedHaveAvailableMoves() {
             alert("You are out of possible moves.");
         }
         winCondition();
+        noMoves = true;
         player = "white";
         if (chips.length == 4) {
             player = "red";
         } else {
             AIPlay();
         }
+    }
+    else{
+        noMoves = false;
     }
     if (PlayerTwo == true) {
         var bestMove = new Move(-1000, -1, -1, 0);
@@ -409,7 +422,7 @@ function iMoved(row, col, color) {
 
 function winCondition() {
     getCounts();
-    if ((total == 64 || red < 1 || white < 1) && haveWeShownScoreYet == false) {
+    if ((total == 64 || red < 1 || white < 1 || noMoves == true) && haveWeShownScoreYet == false) {
 
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 8; j++) {
