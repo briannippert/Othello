@@ -633,6 +633,7 @@ function newGame() {
     new chip(3, 4, "red");
     new chip(4, 3, "red");
     player = "red";
+    noMoves = false;
     draw();
 }
 newGame();
