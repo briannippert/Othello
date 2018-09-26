@@ -126,7 +126,8 @@ function getCounts() {
         log("Chip Count Error!")
     }
 
-    // redScore.value = red;
+    redScore.innerHTML = red;
+    whiteScore.innerHTML = white;
 }
 
 
