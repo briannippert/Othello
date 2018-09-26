@@ -344,7 +344,7 @@ function train() {
         //    console.log(i, "iterations ran")
     }
     var t1 = performance.now();
-    console.log("Training took " + ((t1 - t0)/1000) + " seconds")
+    console.log("Training took " + ((t1 - t0) / 1000) + " seconds")
     trainmode = false;
     draw();
 }
@@ -453,7 +453,7 @@ function winCondition() {
                 if (red > white) {
                     if (moves[i][j] == 1) {
                         baseScore[i][j]++;
-                    } else {
+                    } else if (moves[i][j] == 2) {
                         baseScore[i][j] -= 1;
                     }
 
@@ -468,7 +468,7 @@ function winCondition() {
 
             }
         }
-        moves = initMoves;
+        //   moves = initMoves;
         localStorage.setItem('baseScore', JSON.stringify(baseScore))
         if (trainmode) {
             newGame();
