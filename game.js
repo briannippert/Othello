@@ -193,7 +193,7 @@ function handleMouseMove(e) {
  * Handles the mouse click event inside the canvas element
  * @param  {} e mouse click event
  */
-async function handleMouseClick(e) {
+function handleMouseClick(e) {
     var mouseX = e.clientX - canvas.offsetLeft + 10;
     var mouseY = e.clientY - canvas.offsetTop + 10;
     var coordinates = getGridNumber(mouseX, mouseY);
@@ -211,10 +211,10 @@ async function handleMouseClick(e) {
                 player = "white";
                 draw()
                 if (!trainmode) {
-                    await sleep(500);
+                    sleep(500);
                 }
-
                 AIPlay();
+                
             }
         }
     }
@@ -367,9 +367,9 @@ function undo() {
 
 }
 
-async function doesRedHaveAvailableMoves() {
+function doesRedHaveAvailableMoves() {
     if (!trainmode) {
-        await sleep(200);
+        sleep(200);
     }
 
     validRedMoves = [];
@@ -451,6 +451,7 @@ function iMoved(row, col, color) {
 
 function winCondition() {
     getCounts();
+
     if ((total == 64 || red < 1 || white < 1 || noMoves == true) && haveWeShownScoreYet == false) {
         log({
             red,
@@ -589,7 +590,8 @@ function checkPosition(col, row) {
  * @param  {} ms time in milliseconds
  */
 function sleep(ms) {
-
+    var now = new Date().getTime();
+    while (new Date().getTime() < now + ms) { /* do nothing */ }
 }
 /**
  * removes an element from the specified array
