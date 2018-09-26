@@ -309,6 +309,7 @@ function AIPlay() {
         }
     }
     if (bestMove.col < 0) {
+        console.log({bestMove,validMoves})
         winCondition();
         noMoves = true;
         player = "red";
@@ -323,7 +324,7 @@ function AIPlay() {
         }
     }
 
-    log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
+    log("White Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
     isValidMove(bestMove.col, bestMove.row, "white");
     gamestate.push(new Move(0, bestMove.col, bestMove.row, validChips.length, validChips))
     placeChip(bestMove.col, bestMove.row, "white");
@@ -423,7 +424,7 @@ async function doesRedHaveAvailableMoves() {
                 bestMove = tieMoves[move];
             }
         }
-        log("A2 Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
+        log("Red Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
         isValidMove(bestMove.col, bestMove.row, "red");
         gamestate.push(new Move(0, bestMove.col, bestMove.row, validChips.length, validChips))
         placeChip(bestMove.col, bestMove.row, "red");
@@ -447,7 +448,7 @@ function iMoved(row, col, color) {
 function winCondition() {
     getCounts();
     if ((total == 64 || red < 1 || white < 1 || noMoves == true) && haveWeShownScoreYet == false) {
-
+        console.log({red,white,total})
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 8; j++) {
                 if (red > white) {
@@ -592,6 +593,10 @@ function remove(array, element) {
     if (index !== -1) {
         array.splice(index, 1);
     }
+}
+
+function wipeBaseScore(){
+    localStorage.removeItem('baseScore')
 }
 /**
  * Draws the grid 
