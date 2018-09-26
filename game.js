@@ -319,9 +319,11 @@ function AIPlay() {
     } else {
         noMoves = false;
     }
-    if (bestMove.score <= tieMoves[0].score && tieMoves.length > 0) {
-        var move = Math.floor(Math.random() * tieMoves.length);
-        bestMove = tieMoves[move];
+    if(tieMoves.length > 0){
+        if (bestMove.score <= tieMoves[0].score) {
+            var move = Math.floor(Math.random() * tieMoves.length);
+            bestMove = tieMoves[move];
+        }
     }
 
     log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
@@ -415,9 +417,11 @@ async function doesRedHaveAvailableMoves() {
             return;
         }
 
-        if (bestMove.score <= tieMoves[0].score && tieMoves.length > 0) {
-            var move = Math.floor(Math.random() * tieMoves.length);
-            bestMove = tieMoves[move];
+        if(tieMoves.length > 0){
+            if (bestMove.score <= tieMoves[0].score) {
+                var move = Math.floor(Math.random() * tieMoves.length);
+                bestMove = tieMoves[move];
+            }
         }
         log("A2 Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
         isValidMove(bestMove.col, bestMove.row, "red");
