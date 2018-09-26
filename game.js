@@ -344,7 +344,7 @@ function train() {
         //    console.log(i, "iterations ran")
     }
     var t1 = performance.now();
-    console.log("Training took " + ((t1 - t0)/100) + " seconds")
+    console.log("Training took " + ((t1 - t0)/1000) + " seconds")
     trainmode = false;
     draw();
 }
