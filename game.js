@@ -336,13 +336,16 @@ async function doesRedHaveAvailableMoves() {
         }
     }
     if (validRedMoves.length < 1) {
-        if (haveWeShownScoreYet == false) {
+        if (haveWeShownScoreYet == false && !PlayerTwo) {
             alert("You are out of possible moves.");
         }
         winCondition();
         player = "white";
         if (chips.length == 4) {
             player = "red";
+        }
+        else{
+            AIPlay();
         }
     }
     if (PlayerTwo == true) {
@@ -359,7 +362,7 @@ async function doesRedHaveAvailableMoves() {
         if (bestMove.col < 0) { //that means white can't make any more moves
             winCondition();
             player = "white";
-            if (haveWeShownScoreYet == false) { //if the game isn't over yet, we should let the player know that it's their turn
+            if (haveWeShownScoreYet == false && !PlayerTwo) { //if the game isn't over yet, we should let the player know that it's their turn
                 alert("Computer can't make a move. It's your turn!");
             }
             return;
@@ -395,14 +398,14 @@ function winCondition() {
                     if (moves[i][j] == 1) {
                         baseScore[i][j]++;
                     } else {
-                        baseScore[i][j] -= .5;
+                        baseScore[i][j] -= 1;
                     }
 
                 } else {
                     if (moves[i][j] == 2) {
                         baseScore[i][j]++;
                     } else {
-                        baseScore[i][j] -= .5;
+                        baseScore[i][j] -= 1;
                     }
 
                 }
@@ -410,6 +413,11 @@ function winCondition() {
             }
         }
         moves = initMoves;
+
+        if(PlayerTwo){
+            newGame();
+            return;
+        }
         haveWeShownScoreYet = true;
         alert("Game Over! Player 1: " + red + " AI: " + white);
 
