@@ -395,7 +395,7 @@ async function doesRedHaveAvailableMoves() {
         noMoves = false;
     }
     if (PlayerTwo == true) {
-        var bestMove = new Move(-1000, -1, -1, 0);
+        var bestMove = new Move(-1000, -1, -1, 0, 0);
         for (var i = 0; i < validRedMoves.length; i++) {
             if (validRedMoves[i].score > bestMove.score) {
                 bestMove = validRedMoves[i];
