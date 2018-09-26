@@ -33,12 +33,8 @@ var score = [
     [100, -1, 5, 2, 2, 5, -1, 100]
 ]
 
-let baseScore;
-if(localStorage.baseScore){
-    baseScore = localStorage.baseScore
-}
-else{
-    baseScore = [
+let baseScore = JSON.parse(localStorage.getItem('baseScore')) ||
+    [
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
@@ -47,8 +43,7 @@ else{
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0]
-    ]
-}
+    ];
 
 var moves = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -474,7 +469,7 @@ function winCondition() {
             }
         }
         moves = initMoves;
-
+        localStorage.setItem('baseScore',JSON.stringify(baseScore))
         if (trainmode) {
             newGame();
             return;
