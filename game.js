@@ -294,6 +294,13 @@ function AIPlay() {
     doesRedHaveAvailableMoves();
 }
 
+
+function train() {
+    for (var i = 0; i < doucment.getElementById("times").value; i++) {
+
+    }
+}
+
 async function doesRedHaveAvailableMoves() {
     await sleep(200);
     validRedMoves = [];
