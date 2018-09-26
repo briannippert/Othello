@@ -349,7 +349,7 @@ async function doesRedHaveAvailableMoves() {
     }
 }
 
-function iMoved(col, row, color) {
+function iMoved(row, col, color) {
     if (color == "red") {
         moves[col][row] = 1;
     } else {
