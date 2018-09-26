@@ -33,11 +33,16 @@ var score = [
     [100, -1, 5, 2, 2, 5, -1, 100]
 ]
 
+<<<<<<< HEAD
 let baseScore;
 if (localStorage.baseScore) {
     baseScore = localStorage.baseScore
 } else {
     baseScore = [
+=======
+let baseScore = JSON.parse(localStorage.getItem('baseScore')) ||
+    [
+>>>>>>> d3305ebb9790c7c9c47cae540bf701afa730f449
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
@@ -46,8 +51,7 @@ if (localStorage.baseScore) {
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0]
-    ]
-}
+    ];
 
 var moves = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -361,7 +365,6 @@ function undo() {
 }
 
 async function doesRedHaveAvailableMoves() {
-    console.log(trainmode)
     if (!trainmode) {
         await sleep(200);
     }
@@ -468,7 +471,7 @@ function winCondition() {
             }
         }
         moves = initMoves;
-
+        localStorage.setItem('baseScore',JSON.stringify(baseScore))
         if (trainmode) {
             newGame();
             return;
@@ -626,6 +629,7 @@ function newGame() {
     new chip(3, 4, "red");
     new chip(4, 3, "red");
     player = "red";
+    noMoves = false;
     draw();
 }
 newGame();
