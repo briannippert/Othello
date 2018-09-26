@@ -477,6 +477,7 @@ function log(string) {
 }
 
 function newGame() {
+    PlayerTwo = false;
     chips = [];
     new chip(3, 3, "white");
     new chip(4, 4, "white");
