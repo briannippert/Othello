@@ -597,7 +597,7 @@ function remove(array, element) {
 
 function wipeBaseScore(){
     localStorage.removeItem('baseScore')
-    baseScore = 
+    baseScore = [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -605,7 +605,7 @@ function wipeBaseScore(){
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0];
+    [0, 0, 0, 0, 0, 0, 0, 0]];
 }
 /**
  * Draws the grid 
