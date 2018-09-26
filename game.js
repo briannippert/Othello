@@ -390,8 +390,7 @@ function iMoved(row, col, color) {
 
 function winCondition() {
     getCounts();
-    doesRedHaveAvailableMoves();
-    if ((total == 64 || red < 1 || white < 1 || validRedMoves.length < 1) && haveWeShownScoreYet == false) {
+    if ((total == 64 || red < 1 || white < 1) && haveWeShownScoreYet == false) {
 
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 8; j++) {
