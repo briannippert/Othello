@@ -16,6 +16,7 @@ var validRedMoves = [];
 
 var haveWeShownScoreYet = false;
 var PlayerTwo = false;
+var trainmode = false;
 var noMoves = false;
 const redScore = document.getElementById("redScore");
 const whiteScore = document.getElementById("whiteScore");
@@ -209,7 +210,10 @@ async function handleMouseClick(e) {
                 }
                 player = "white";
                 draw()
-                //await sleep(500)
+                if(!trainmode){
+                    await sleep(500);
+                }
+                
                 AIPlay();
             }
         }
@@ -334,10 +338,12 @@ function AIPlay() {
 
 
 function train() {
+    trainmode = true;
     for (var i = 0; i < document.getElementById("train").value; i++) {
         turnComputerOn();
         console.log(i, "iterations ran")
     }
+    trainmode = false;
 }
 
 function undo() {
@@ -354,7 +360,11 @@ function undo() {
 }
 
 async function doesRedHaveAvailableMoves() {
-    //await sleep(200);
+    console.log(trainmode)
+    if(!trainmode){
+        await sleep(200);
+    }
+    
     validRedMoves = [];
     var tieMoves = [];
     for (var r = 0; r < 8; r++) {
@@ -456,7 +466,7 @@ function winCondition() {
         }
         moves = initMoves;
 
-        if (PlayerTwo) {
+        if (trainmode) {
             newGame();
             return;
         }
