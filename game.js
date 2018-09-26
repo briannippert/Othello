@@ -100,10 +100,11 @@ class chip {
         this.draw();
     }
     draw() {
+        ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.closePath();
-        ctx.fillStyle = this.color;
+
         ctx.fill();
     }
 }
@@ -305,7 +306,7 @@ function AIPlay() {
         noMoves = true;
         player = "red";
         return;
-    }    else{
+    } else {
         noMoves = false;
     }
     if (bestMove.score <= tieMoves[0].score && tieMoves.length > 0) {
@@ -374,8 +375,7 @@ async function doesRedHaveAvailableMoves() {
         } else {
             AIPlay();
         }
-    }
-    else{
+    } else {
         noMoves = false;
     }
     if (PlayerTwo == true) {
