@@ -137,8 +137,8 @@ function getCounts() {
  */
 function handleMouseMove(e) {
     if (player == "red") {
-        var mouseX = e.clientX;
-        var mouseY = e.clientY;
+        var mouseX = e.clientX - canvas.offsetLeft;
+        var mouseY = e.clientY - canvas.offsetTop;
         var coordinates = getGridNumber(mouseX, mouseY);
         if (player == "red") {
             isValidMove(coordinates.col, coordinates.row, "red");
