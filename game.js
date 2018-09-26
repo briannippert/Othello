@@ -368,7 +368,6 @@ function undo() {
 }
 
 async function doesRedHaveAvailableMoves() {
-    console.log(trainmode)
     if (!trainmode) {
         await sleep(200);
     }
