@@ -320,6 +320,9 @@ function winCondition(){
     {
         haveWeShownScoreYet = true;
         alert("Game Over! Player 1: " + red + " AI: " + white);
+        if(confirm("Would you like to start a new game?") == true){
+            newGame();
+        }
     }
 }
 
@@ -465,6 +468,7 @@ function log(string) {
 }
 
 function newGame() {
+    chips = [];
     new chip(3, 3, "white");
     new chip(4, 4, "white");
     new chip(3, 4, "red");
