@@ -9,7 +9,7 @@ var white = 0;
 var total = 0;
 var playerScore = 0;
 var aiScore = 0;
-debug = true;
+debug = false;
 var player = "red"
 var validMoves = [];
 var validRedMoves = [];
@@ -33,25 +33,16 @@ var score = [
     [100, -1, 5, 2, 2, 5, -1, 100]
 ]
 
-<<<<<<< HEAD
-let baseScore;
-if (localStorage.baseScore) {
-    baseScore = localStorage.baseScore
-} else {
-    baseScore = [
-=======
-let baseScore = JSON.parse(localStorage.getItem('baseScore')) ||
-    [
->>>>>>> d3305ebb9790c7c9c47cae540bf701afa730f449
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0]
-    ];
+let baseScore = JSON.parse(localStorage.getItem('baseScore')) || [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0]
+];
 
 var moves = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -283,7 +274,7 @@ function draw() {
     for (var i = 0; i < chips.length; i++) {
         chips[i].draw();
     }
- //   winCondition();
+    //   winCondition();
 }
 
 function AIPlay() {
@@ -471,7 +462,7 @@ function winCondition() {
             }
         }
         moves = initMoves;
-        localStorage.setItem('baseScore',JSON.stringify(baseScore))
+        localStorage.setItem('baseScore', JSON.stringify(baseScore))
         if (trainmode) {
             newGame();
             return;
