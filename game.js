@@ -183,6 +183,7 @@ async function handleMouseClick(e) {
             if (player == "red") {
                 log("You Played: " + coordinates.col + "," + coordinates.row + " Score: " + "2 Bananas");
                 placeChip(coordinates.col, coordinates.row, "red");
+                iMoved(coordinates.col, coordinates.row, "red")
                 for (var i = 0; i < validChips.length; i++) {
                     validChips[i].flip();
                 }
@@ -285,7 +286,7 @@ function AIPlay() {
     log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
     isValidMove(bestMove.col, bestMove.row, "white");
     placeChip(bestMove.col, bestMove.row, "white");
-    iMoved(bestMove.col,bestMove.row,"white")
+    iMoved(bestMove.col, bestMove.row, "white")
     for (var i = 0; i < validChips.length; i++) {
         validChips[i].flip();
     }
@@ -339,7 +340,7 @@ async function doesRedHaveAvailableMoves() {
         log("A2 Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
         isValidMove(bestMove.col, bestMove.row, "red");
         placeChip(bestMove.col, bestMove.row, "red");
-        iMoved(bestMove.col,bestMove.row,"red")
+        iMoved(bestMove.col, bestMove.row, "red")
         for (var i = 0; i < validChips.length; i++) {
             validChips[i].flip();
         }
@@ -359,6 +360,31 @@ function iMoved(col, row, color) {
 function winCondition() {
     getCounts();
     if ((total == 64 || red < 1 || white < 1) && haveWeShownScoreYet == false) {
+
+        for (var i = 0; i < 8; i++) {
+            for (var j = 0; j < 8; j++) {
+                if (red > white) {
+                    if (baseScore[i][j] == 1)
+                    {
+                        baseScore[i][j]++;
+                    }else
+                    {
+                        baseScore[i][j]-= .5;
+                    }
+                        
+                }else{
+                    if (baseScore[i][j] == 2)
+                    {
+                        baseScore[i][j]++;
+                    }else
+                    {
+                        baseScore[i][j]-= .5;
+                    }
+                        
+                }
+
+            }
+        }
         haveWeShownScoreYet = true;
         alert("Game Over! Player 1: " + red + " AI: " + white);
         
