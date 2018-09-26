@@ -210,10 +210,10 @@ async function handleMouseClick(e) {
                 }
                 player = "white";
                 draw()
-                if(!trainmode){
+                if (!trainmode) {
                     await sleep(500);
                 }
-                
+
                 AIPlay();
             }
         }
@@ -361,10 +361,10 @@ function undo() {
 
 async function doesRedHaveAvailableMoves() {
     console.log(trainmode)
-    if(!trainmode){
+    if (!trainmode) {
         await sleep(200);
     }
-    
+
     validRedMoves = [];
     var tieMoves = [];
     for (var r = 0; r < 8; r++) {
@@ -400,7 +400,7 @@ async function doesRedHaveAvailableMoves() {
             if (validRedMoves[i].score > bestMove.score) {
                 bestMove = validRedMoves[i];
             } else if (validRedMoves[i].score == bestMove.score) {
-                tieMoves.push(validMoves[i]);
+                tieMoves.push(validRedMoves[i]);
                 //   if (validRedMoves[i].chipsToFlip > bestMove.chipsToFlip) {
                 //      bestMove = validRedMoves[i];
                 // }
