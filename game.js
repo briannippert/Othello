@@ -173,7 +173,7 @@ function getCounts() {
 
 
 /**
- * Handles the mouse move event inside the canvas element
+ * Handles the mouse move event inside the canvas element.
  * @param  {} e mouse move event
  */
 function handleMouseMove(e) {
