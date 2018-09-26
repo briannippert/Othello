@@ -9,7 +9,7 @@ var white = 0;
 var total = 0;
 var playerScore = 0;
 var aiScore = 0;
-debug = true;
+debug = false;
 var player = "red"
 var validMoves = [];
 var validRedMoves = [];
@@ -33,17 +33,16 @@ var score = [
     [100, -1, 5, 2, 2, 5, -1, 100]
 ]
 
-let baseScore = JSON.parse(localStorage.getItem('baseScore')) ||
-    [
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0]
-    ];
+let baseScore = JSON.parse(localStorage.getItem('baseScore')) || [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0]
+];
 
 var moves = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -270,18 +269,15 @@ function clear() {
  * main draw function that re-draws the entire screen
  */
 function draw() {
-    clear();
-    drawGrid();
-    for (var i = 0; i < chips.length; i++) {
-        chips[i].draw();
-    }
-    clear();
-    drawGrid();
-    for (var i = 0; i < chips.length; i++) {
-        chips[i].draw();
+    if (!trainmode) {
+        clear();
+        drawGrid();
+        for (var i = 0; i < chips.length; i++) {
+            chips[i].draw();
+        }
     }
 
-    winCondition();
+    //   winCondition();
 }
 
 function AIPlay() {
@@ -321,7 +317,7 @@ function AIPlay() {
     } else {
         noMoves = false;
     }
-    if(tieMoves.length > 0){
+    if (tieMoves.length > 0) {
         if (bestMove.score <= tieMoves[0].score) {
             var move = Math.floor(Math.random() * tieMoves.length);
             bestMove = tieMoves[move];
@@ -343,11 +339,15 @@ function AIPlay() {
 
 function train() {
     trainmode = true;
+    var t0 = performance.now();
     for (var i = 0; i < document.getElementById("train").value; i++) {
         turnComputerOn();
-        console.log(i, "iterations ran")
+        //    console.log(i, "iterations ran")
     }
+    var t1 = performance.now();
+    console.log("Training took " + ((t1 - t0)/1000) + " seconds")
     trainmode = false;
+    draw();
 }
 
 function undo() {
@@ -418,7 +418,7 @@ async function doesRedHaveAvailableMoves() {
             return;
         }
 
-        if(tieMoves.length > 0){
+        if (tieMoves.length > 0) {
             if (bestMove.score <= tieMoves[0].score) {
                 var move = Math.floor(Math.random() * tieMoves.length);
                 bestMove = tieMoves[move];
@@ -470,7 +470,7 @@ function winCondition() {
             }
         }
         moves = initMoves;
-        localStorage.setItem('baseScore',JSON.stringify(baseScore))
+        localStorage.setItem('baseScore', JSON.stringify(baseScore))
         if (trainmode) {
             newGame();
             return;
@@ -581,7 +581,7 @@ function checkPosition(col, row) {
  * @param  {} ms time in milliseconds
  */
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+
 }
 /**
  * removes an element from the specified array
