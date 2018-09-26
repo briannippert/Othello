@@ -296,8 +296,9 @@ function AIPlay() {
 
 
 function train() {
-    for (var i = 0; i < doucment.getElementById("times").value; i++) {
-
+    for (var i = 0; i < document.getElementById("train").value; i++) {
+        turnComputerOn();
+        
     }
 }
 
