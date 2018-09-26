@@ -337,6 +337,9 @@ async function doesRedHaveAvailableMoves() {
         if (chips.length == 4) {
             player = "red";
         }
+        else{
+            AIPlay();
+        }
     }
     if (PlayerTwo == true) {
         var bestMove = new Move(-1000, -1, -1, 0);
