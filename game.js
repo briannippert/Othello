@@ -13,6 +13,7 @@ debug = true;
 var player = "red"
 var validMoves = [];
 var validRedMoves = [];
+
 var haveWeShownScoreYet = false;
 var PlayerTwo = false;
 const redScore = document.getElementById("redScore");
@@ -273,6 +274,7 @@ function draw() {
 function AIPlay() {
 
     validMoves = [];
+    var tieMoves = [];
     //log(validMoves)
     for (var c = 0; c < 8; c++) {
         for (var r = 0; r < 8; r++) {
@@ -291,15 +293,20 @@ function AIPlay() {
         if (validMoves[i].score > bestMove.score) {
             bestMove = validMoves[i];
         } else if (validMoves[i].score == bestMove.score) {
-            if (validMoves[i].chipsToFlip > bestMove.chipsToFlip) {
-                bestMove = validMoves[i];
-            }
+            tieMoves.push(validMoves[i]);
+            //if (validMoves[i].chipsToFlip > bestMove.chipsToFlip) {
+            //   bestMove = validMoves[i];
+            // }
         }
     }
     if (bestMove.col < 0) {
         winCondition();
         player = "red";
         return;
+    }
+    if (bestMove.score <= tieMoves[0].score && tieMoves.length > 0) {
+        var move = Math.floor(Math.random() * tieMoves.length);
+        bestMove = tieMoves[move];
     }
     log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
     isValidMove(bestMove.col, bestMove.row, "white");
@@ -337,6 +344,7 @@ function undo() {
 async function doesRedHaveAvailableMoves() {
     //await sleep(200);
     validRedMoves = [];
+    var tieMoves = [];
     for (var r = 0; r < 8; r++) {
         for (var c = 0; c < 8; c++) {
             if (checkDuplicate(c, r) == true) {
@@ -367,9 +375,10 @@ async function doesRedHaveAvailableMoves() {
             if (validRedMoves[i].score > bestMove.score) {
                 bestMove = validRedMoves[i];
             } else if (validRedMoves[i].score == bestMove.score) {
-                if (validRedMoves[i].chipsToFlip > bestMove.chipsToFlip) {
-                    bestMove = validRedMoves[i];
-                }
+                tieMoves.push(validMoves[i]);
+                //   if (validRedMoves[i].chipsToFlip > bestMove.chipsToFlip) {
+                //      bestMove = validRedMoves[i];
+                // }
             }
         }
         if (bestMove.col < 0) { //that means white can't make any more moves
@@ -379,6 +388,11 @@ async function doesRedHaveAvailableMoves() {
                 alert("Computer can't make a move. It's your turn!");
             }
             return;
+        }
+
+        if (bestMove.score <= tieMoves[0].score && tieMoves.length > 0) {
+            var move = Math.floor(Math.random() * tieMoves.length);
+            bestMove = tieMoves[move];
         }
         log("A2 Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
         isValidMove(bestMove.col, bestMove.row, "red");

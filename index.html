@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"></meta>
+  <meta charset="UTF-8">
+  </meta>
   <title>Othello</title>
   <style>
     #canvas {
@@ -17,6 +19,7 @@
     }
   </style>
 </head>
+
 <body>
   <table>
     <tr>
@@ -34,10 +37,11 @@
   <button style="z-index: 10;" onclick="train()">Train</button>
   <label>Times to Train: </label><input id="train" type="text">
   <button style="z-index: 10;" onclick="undo()">Undo Last Move</button>
-  
-  <hr/>
+
+  <hr />
   <canvas style="z-index: -1;" onclick="handleMouseClick(event)" onmousemove="handleMouseMove(event)" id="canvas"></canvas>
-  
+
   <script src="game.js"></script>
 </body>
+
 </html>
