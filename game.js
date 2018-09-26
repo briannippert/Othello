@@ -154,7 +154,7 @@ async function handleMouseClick(e) {
         if (validChips.length > 0) {
             if (player == "red") {
                 log("You Played: " + coordinates.col + "," + coordinates.row + " Score: " + "2 Bananas");
-                placeChip(coordinates.col, coordinates.row, "red")
+                placeChip(coordinates.col, coordinates.row, "red");
                 for (var i = 0; i < validChips.length; i++) {
                     validChips[i].flip();
                 }
@@ -283,7 +283,10 @@ async function doesRedHaveAvailableMoves(){
             alert("You are out of possible moves.");
         }
         winCondition();
-        player = white;
+        player = "white";
+        if(chips.length == 4){
+            player = "red";
+        }
     }
     if(PlayerTwo == true){
         var bestMove = new Move(-1000, -1, -1, 0);
@@ -298,9 +301,12 @@ async function doesRedHaveAvailableMoves(){
             }
             }
         }
-        if(bestMove.col < 0){
+        if(bestMove.col < 0){   //that means white can't make any more moves
             winCondition();
             player = "white";
+            if(haveWeShownScoreYet == false){   //if the game isn't over yet, we should let the player know that it's their turn
+                alert("Computer can't make a move. It's your turn!");
+            }
             return;
         }
         log("A2 Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
@@ -321,6 +327,8 @@ function winCondition(){
         haveWeShownScoreYet = true;
         alert("Game Over! Player 1: " + red + " AI: " + white);
         if(confirm("Would you like to start a new game?") == true){
+            PlayerTwo = false;
+            haveWeShownScoreYet = false;
             newGame();
         }
     }
@@ -473,6 +481,7 @@ function newGame() {
     new chip(4, 4, "white");
     new chip(3, 4, "red");
     new chip(4, 3, "red");
+    player = "red";
     draw();
 }
 newGame();
