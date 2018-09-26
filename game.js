@@ -309,7 +309,7 @@ function AIPlay() {
         }
     }
     if (bestMove.col < 0) {
-        console.log({
+        log({
             bestMove,
             validMoves
         })
