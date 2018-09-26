@@ -309,7 +309,7 @@ function AIPlay() {
         }
     }
     if (bestMove.col < 0) {
-        console.log({bestMove,validMoves})
+        log({bestMove,validMoves})
         winCondition();
         noMoves = true;
         player = "red";
