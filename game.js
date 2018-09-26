@@ -137,8 +137,8 @@ function getCounts() {
  */
 function handleMouseMove(e) {
     if (player == "red") {
-        var mouseX = e.clientX - canvas.offsetLeft;
-        var mouseY = e.clientY - canvas.offsetTop;
+        var mouseX = e.clientX - canvas.offsetLeft + 20;
+        var mouseY = e.clientY - canvas.offsetTop + 20;
         var coordinates = getGridNumber(mouseX, mouseY);
         if (player == "red") {
             isValidMove(coordinates.col, coordinates.row, "red");
@@ -151,8 +151,8 @@ function handleMouseMove(e) {
  * @param  {} e mouse click event
  */
 async function handleMouseClick(e) {
-    var mouseX = e.clientX;
-    var mouseY = e.clientY;
+    var mouseX = e.clientX - canvas.offsetLeft + 20;
+    var mouseY = e.clientY - canvas.offsetTop + 20;
     var coordinates = getGridNumber(mouseX, mouseY);
     if (checkDuplicate(coordinates.col, coordinates.row) == false && coordinates.col != -1 && coordinates.row != -1) {
         if (validChips.length > 0) {
