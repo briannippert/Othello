@@ -387,7 +387,7 @@ function winCondition() {
         }
         haveWeShownScoreYet = true;
         alert("Game Over! Player 1: " + red + " AI: " + white);
-
+        
         if (confirm("Would you like to start a new game?") == true) {
             PlayerTwo = false;
             haveWeShownScoreYet = false;
@@ -466,13 +466,6 @@ function checkDuplicate(col, row) {
     // }
     // return false;
     return chips.some(chip => (chip.row == row && chip.col == col));
-
-}
-
-function getNeighbors(row, col, color) {
-    let redChips = chips.filter(chip => (chip.row - row <= 1 && chip.row - row >= -1 &&
-        chip.col - col <= 1 && chip.col - col >= -1 && (chip.col - col != 0 || chip.row - row != 0) &&
-        chip.color != color))
 
 }
 
