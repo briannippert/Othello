@@ -308,7 +308,7 @@ function AIPlay() {
 
 
 function train() {
-    for (var i = 0; i < doucment.getElementById("times").value; i++) {
+    for (var i = 0; i < document.getElementById("times").value; i++) {
 
     }
 }
@@ -401,6 +401,11 @@ function winCondition() {
             }
         }
         moves = initMoves;
+
+        if(PlayerTwo){
+            newGame();
+            return;
+        }
         haveWeShownScoreYet = true;
         alert("Game Over! Player 1: " + red + " AI: " + white);
 
