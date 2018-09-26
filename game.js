@@ -161,9 +161,7 @@ function getCounts() {
             white++;
         }
     }
-    // log("Red Chips: " + red);
-    // log("White Chips: " + white);
-    // log("Total Chips: " + total);
+
     if (total != red + white) {
         log("Chip Count Error!")
     }
