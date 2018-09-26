@@ -112,6 +112,7 @@ class Move {
         this.row = row;
         this.col = col;
         this.chipsToFlip = chipsToFlip;
+        this.chipList = chipList;
     }
 
 }
@@ -318,6 +319,12 @@ function train() {
         turnComputerOn();
 
     }
+}
+
+function undo()
+{
+    var moveToUndo = gamestate.pop();
+
 }
 
 async function doesRedHaveAvailableMoves() {
@@ -566,6 +573,7 @@ function log(string) {
 function newGame() {
     // PlayerTwo = false;
     chips = [];
+    gamestate = [];
     new chip(3, 3, "white");
     new chip(4, 4, "white");
     new chip(3, 4, "red");
