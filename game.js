@@ -280,6 +280,7 @@ function draw() {
     //   winCondition();
 }
 
+//Fixed stuff 
 function AIPlay() {
 
     validMoves = [];
