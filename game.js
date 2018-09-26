@@ -269,11 +269,14 @@ function clear() {
  * main draw function that re-draws the entire screen
  */
 function draw() {
-    clear();
-    drawGrid();
-    for (var i = 0; i < chips.length; i++) {
-        chips[i].draw();
+    if (!trainmode) {
+        clear();
+        drawGrid();
+        for (var i = 0; i < chips.length; i++) {
+            chips[i].draw();
+        }
     }
+
     //   winCondition();
 }
 
@@ -335,11 +338,15 @@ function AIPlay() {
 
 function train() {
     trainmode = true;
+    var t0 = performance.now();
     for (var i = 0; i < document.getElementById("train").value; i++) {
         turnComputerOn();
-        console.log(i, "iterations ran")
+        //    console.log(i, "iterations ran")
     }
+    var t1 = performance.now();
+    console.log("Training took " + ((t1 - t0)/100) + " seconds")
     trainmode = false;
+    draw();
 }
 
 function undo() {
