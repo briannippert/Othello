@@ -364,30 +364,26 @@ function winCondition() {
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 8; j++) {
                 if (red > white) {
-                    if (moves[i][j] == 1)
-                    {
+                    if (moves[i][j] == 1) {
                         baseScore[i][j]++;
-                    }else
-                    {
-                        baseScore[i][j]-= .5;
+                    } else {
+                        baseScore[i][j] -= .5;
                     }
-                        
-                }else{
-                    if (moves[i][j] == 2)
-                    {
+
+                } else {
+                    if (moves[i][j] == 2) {
                         baseScore[i][j]++;
-                    }else
-                    {
-                        baseScore[i][j]-= .5;
+                    } else {
+                        baseScore[i][j] -= .5;
                     }
-                        
+
                 }
 
             }
         }
         haveWeShownScoreYet = true;
         alert("Game Over! Player 1: " + red + " AI: " + white);
-        
+
         if (confirm("Would you like to start a new game?") == true) {
             PlayerTwo = false;
             haveWeShownScoreYet = false;
