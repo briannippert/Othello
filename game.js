@@ -309,7 +309,10 @@ function AIPlay() {
         }
     }
     if (bestMove.col < 0) {
-        log({bestMove,validMoves})
+        log({
+            bestMove,
+            validMoves
+        })
         winCondition();
         noMoves = true;
         player = "red";
@@ -448,7 +451,11 @@ function iMoved(row, col, color) {
 function winCondition() {
     getCounts();
     if ((total == 64 || red < 1 || white < 1 || noMoves == true) && haveWeShownScoreYet == false) {
-        console.log({red,white,total})
+        console.log({
+            red,
+            white,
+            total
+        })
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 8; j++) {
                 if (red > white) {
@@ -458,10 +465,10 @@ function winCondition() {
                         baseScore[i][j] -= 1;
                     }
 
-                } else {
+                } else if (white > red) {
                     if (moves[i][j] == 2) {
                         baseScore[i][j]++;
-                    } else {
+                    } else if (moves[i][j] == 1) {
                         baseScore[i][j] -= 1;
                     }
 
@@ -595,7 +602,7 @@ function remove(array, element) {
     }
 }
 
-function wipeBaseScore(){
+function wipeBaseScore() {
     localStorage.removeItem('baseScore')
     baseScore = [
     [0, 0, 0, 0, 0, 0, 0, 0],
