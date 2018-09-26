@@ -201,7 +201,7 @@ async function handleMouseClick(e) {
                 }
                 player = "white";
                 draw()
-                await sleep(500)
+                //await sleep(500)
                 AIPlay();
             }
         }
@@ -315,7 +315,7 @@ function train() {
 }
 
 async function doesRedHaveAvailableMoves() {
-    await sleep(200);
+    //await sleep(200);
     validRedMoves = [];
     for (var r = 0; r < 8; r++) {
         for (var c = 0; c < 8; c++) {
@@ -382,7 +382,8 @@ function iMoved(row, col, color) {
 
 function winCondition() {
     getCounts();
-    if ((total == 64 || red < 1 || white < 1) && haveWeShownScoreYet == false) {
+    doesRedHaveAvailableMoves();
+    if ((total == 64 || red < 1 || white < 1 || validRedMoves.length < 1) && haveWeShownScoreYet == false) {
 
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 8; j++) {
