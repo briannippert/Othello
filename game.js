@@ -592,10 +592,7 @@ function checkPosition(col, row) {
  * @param  {} ms time in milliseconds
  */
 function sleep(ms) {
-    var now = new Date().getTime();
-    while (new Date().getTime() < now + ms) {
 
-    }
 }
 /**
  * removes an element from the specified array
