@@ -17,6 +17,8 @@ var haveWeShownScoreYet = false;
 var PlayerTwo = false;
 const redScore = document.getElementById("redScore");
 const whiteScore = document.getElementById("whiteScore");
+
+var gamestate = []
 var score = [
     [100, -1, 5, 2, 2, 5, -1, 100],
     [-1, -10, 1, 1, 1, 1, -10, -1],
@@ -105,7 +107,7 @@ class chip {
 }
 
 class Move {
-    constructor(score, col, row, chipsToFlip) {
+    constructor(score, col, row, chipsToFlip, chipList) {
         this.score = score;
         this.row = row;
         this.col = col;
@@ -195,6 +197,8 @@ async function handleMouseClick(e) {
             if (player == "red") {
                 log("You Played: " + coordinates.col + "," + coordinates.row + " Score: " + "2 Bananas");
                 placeChip(coordinates.col, coordinates.row, "red");
+                gamestate.push(new Move(0, coordinates.col, coordinates.row, 0, validChips))
+
                 iMoved(coordinates.col, coordinates.row, "red")
                 for (var i = 0; i < validChips.length; i++) {
                     validChips[i].flip();
@@ -276,7 +280,8 @@ function AIPlay() {
             }
             isValidMove(c, r, "white");
             if (validChips.length > 0) {
-                validMoves.push(new Move(baseScore[c][r], c, r, validChips.length))
+                validMoves.push(new Move(baseScore[c][r], c, r, validChips.length, validChips))
+               
             }
         }
     }
@@ -297,6 +302,7 @@ function AIPlay() {
     }
     log("AI Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
     isValidMove(bestMove.col, bestMove.row, "white");
+    gamestate.push(new Move(0, bestMove.col, bestMove.row, validChips.length, validChips))
     placeChip(bestMove.col, bestMove.row, "white");
     iMoved(bestMove.col, bestMove.row, "white")
     for (var i = 0; i < validChips.length; i++) {
@@ -310,7 +316,7 @@ function AIPlay() {
 function train() {
     for (var i = 0; i < document.getElementById("train").value; i++) {
         turnComputerOn();
-        
+
     }
 }
 
@@ -324,7 +330,8 @@ async function doesRedHaveAvailableMoves() {
             }
             isValidMove(c, r, "red");
             if (validChips.length > 0) {
-                validRedMoves.push(new Move(baseScore[c][r], c, r, validChips.length))
+                validRedMoves.push(new Move(baseScore[c][r], c, r, validChips.length, validChips))
+
             }
         }
     }
@@ -362,6 +369,7 @@ async function doesRedHaveAvailableMoves() {
         }
         log("A2 Played: " + bestMove.col + "," + bestMove.row + " Score: " + bestMove.score);
         isValidMove(bestMove.col, bestMove.row, "red");
+        gamestate.push(new Move(0, bestMove.col, bestMove.row, validChips.length, validChips))
         placeChip(bestMove.col, bestMove.row, "red");
         iMoved(bestMove.col, bestMove.row, "red")
         for (var i = 0; i < validChips.length; i++) {
