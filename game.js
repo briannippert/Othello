@@ -33,16 +33,22 @@ var score = [
     [100, -1, 5, 2, 2, 5, -1, 100]
 ]
 
-var baseScore = [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0]
-]
+let baseScore;
+if(localStorage.baseScore){
+    baseScore = localStorage.baseScore
+}
+else{
+    baseScore = [
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+}
 
 var moves = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -210,10 +216,10 @@ async function handleMouseClick(e) {
                 }
                 player = "white";
                 draw()
-                if(!trainmode){
+                if (!trainmode) {
                     await sleep(500);
                 }
-                
+
                 AIPlay();
             }
         }
@@ -363,10 +369,10 @@ function undo() {
 
 async function doesRedHaveAvailableMoves() {
     console.log(trainmode)
-    if(!trainmode){
+    if (!trainmode) {
         await sleep(200);
     }
-    
+
     validRedMoves = [];
     var tieMoves = [];
     for (var r = 0; r < 8; r++) {
