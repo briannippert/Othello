@@ -264,7 +264,7 @@ function AIPlay() {
             }
             isValidMove(c, r, "white");
             if (validChips.length > 0) {
-                validMoves.push(new Move(score[c][r], c, r, validChips.length))
+                validMoves.push(new Move(baseScore[c][r], c, r, validChips.length))
             }
         }
     }
@@ -304,7 +304,7 @@ async function doesRedHaveAvailableMoves() {
             }
             isValidMove(c, r, "red");
             if (validChips.length > 0) {
-                validRedMoves.push(new Move(score[c][r], c, r, validChips.length))
+                validRedMoves.push(new Move(baseScore[c][r], c, r, validChips.length))
             }
         }
     }
@@ -364,7 +364,7 @@ function winCondition() {
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 8; j++) {
                 if (red > white) {
-                    if (baseScore[i][j] == 1)
+                    if (moves[i][j] == 1)
                     {
                         baseScore[i][j]++;
                     }else
@@ -373,7 +373,7 @@ function winCondition() {
                     }
                         
                 }else{
-                    if (baseScore[i][j] == 2)
+                    if (moves[i][j] == 2)
                     {
                         baseScore[i][j]++;
                     }else
