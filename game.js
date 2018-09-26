@@ -34,10 +34,9 @@ var score = [
 ]
 
 let baseScore;
-if(localStorage.baseScore){
+if (localStorage.baseScore) {
     baseScore = localStorage.baseScore
-}
-else{
+} else {
     baseScore = [
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
@@ -280,13 +279,7 @@ function draw() {
     for (var i = 0; i < chips.length; i++) {
         chips[i].draw();
     }
-    clear();
-    drawGrid();
-    for (var i = 0; i < chips.length; i++) {
-        chips[i].draw();
-    }
-
-    winCondition();
+ //   winCondition();
 }
 
 function AIPlay() {
@@ -325,7 +318,7 @@ function AIPlay() {
     } else {
         noMoves = false;
     }
-    if(tieMoves.length > 0){
+    if (tieMoves.length > 0) {
         if (bestMove.score <= tieMoves[0].score) {
             var move = Math.floor(Math.random() * tieMoves.length);
             bestMove = tieMoves[move];
@@ -423,7 +416,7 @@ async function doesRedHaveAvailableMoves() {
             return;
         }
 
-        if(tieMoves.length > 0){
+        if (tieMoves.length > 0) {
             if (bestMove.score <= tieMoves[0].score) {
                 var move = Math.floor(Math.random() * tieMoves.length);
                 bestMove = tieMoves[move];
@@ -586,7 +579,7 @@ function checkPosition(col, row) {
  * @param  {} ms time in milliseconds
  */
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+
 }
 /**
  * removes an element from the specified array
